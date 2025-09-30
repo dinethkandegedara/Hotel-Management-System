@@ -77,6 +77,12 @@ if(!isset($_SESSION["user"]))
                         <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
                     </li>
                     <li>
+                        <a href="foods.php"><i class="fa fa-cutlery"></i> Food Management</a>
+                    </li>
+                    <li>
+                        <a href="food_orders.php"><i class="fa fa-list"></i> Food Orders</a>
+                    </li>
+                    <li>
                         <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                    

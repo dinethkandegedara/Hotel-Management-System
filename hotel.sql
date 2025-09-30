@@ -166,6 +166,51 @@ CREATE TABLE IF NOT EXISTS `hotel_info` (
   `currency` varchar(10) DEFAULT 'LKR'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foods`
+--
+
+CREATE TABLE IF NOT EXISTS `foods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Demo food items
+INSERT INTO `foods` (`name`, `category`, `price`) VALUES
+('Chicken Fried Rice', 'Main Course', 1200.00),
+('Vegetable Kottu', 'Main Course', 900.00),
+('Egg Hoppers', 'Breakfast', 350.00),
+('Fruit Platter', 'Breakfast', 500.00),
+('Fish Curry', 'Main Course', 1300.00),
+('Chocolate Cake', 'Dessert', 600.00),
+('Ice Cream', 'Dessert', 400.00),
+('Sri Lankan Tea', 'Beverage', 250.00),
+('Coffee', 'Beverage', 300.00),
+('Fresh Juice', 'Beverage', 350.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food_orders`
+--
+
+CREATE TABLE IF NOT EXISTS `food_orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(100) NOT NULL,
+  `food_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `order_time` datetime NOT NULL,
+  `status` varchar(20) DEFAULT 'pending',
+  `bill_amount` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`food_id`) REFERENCES `foods`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `hotel_info`
 --
@@ -211,6 +256,18 @@ ALTER TABLE `roombook`
 -- Indexes for table `hotel_info`
 --
 ALTER TABLE `hotel_info`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `foods`
+--
+ALTER TABLE `foods`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `food_orders`
+--
+ALTER TABLE `food_orders`
  ADD PRIMARY KEY (`id`);
 
 --

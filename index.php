@@ -76,6 +76,7 @@ include('db.php');
 							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
 							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
 							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
+							<li class="menu__item"><a href="food_order.php" class="menu__link">Food Order</a></li>
 							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
 						</ul>
 					</nav>
