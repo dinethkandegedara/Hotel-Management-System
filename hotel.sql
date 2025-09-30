@@ -162,15 +162,16 @@ CREATE TABLE IF NOT EXISTS `hotel_info` (
   `total_employees` int(3) DEFAULT 50,
   `specialties` text DEFAULT 'Panoramic sea views, beachside location, event hosting',
   `contact_phone` varchar(20) DEFAULT '+94 (32)225-8800',
-  `contact_email` varchar(100) DEFAULT 'info@oceanviewhotel.com'
+  `contact_email` varchar(100) DEFAULT 'info@oceanviewhotel.com',
+  `currency` varchar(10) DEFAULT 'LKR'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `hotel_info`
 --
 
-INSERT INTO `hotel_info` (`id`, `hotel_name`, `location`, `established_year`, `total_employees`, `specialties`, `contact_phone`, `contact_email`) VALUES
-(1, 'Ocean View Hotel', 'Kalpitiya Beach Side, 1km from Kalpitiya Town, Sri Lanka', 1995, 50, 'Panoramic sea views from all rooms, iconic beachside location, wedding and event hosting, business meeting facilities, 30 years of hospitality excellence', '+94 (32)225-8800', 'info@oceanviewhotel.com');
+INSERT INTO `hotel_info` (`id`, `hotel_name`, `location`, `established_year`, `total_employees`, `specialties`, `contact_phone`, `contact_email`, `currency`) VALUES
+(1, 'Ocean View Hotel', 'Kalpitiya Beach Side, 1km from Kalpitiya Town, Sri Lanka', 1995, 50, 'Panoramic sea views from all rooms, iconic beachside location, wedding and event hosting, business meeting facilities, 30 years of hospitality excellence', '+94 (32)225-8800', 'info@oceanviewhotel.com', 'LKR');
 
 --
 -- Indexes for dumped tables

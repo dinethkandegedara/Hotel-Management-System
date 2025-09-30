@@ -198,20 +198,20 @@ tr:hover .cut { opacity: 1; }
 									$type_of_room = 0;       
 									if($troom=="Superior Room")
 									{
-										$type_of_room = 320;
+										$type_of_room = 45000;
 									
 									}
 									else if($troom=="Deluxe Room")
 									{
-										$type_of_room = 220;
+										$type_of_room = 32000;
 									}
 									else if($troom=="Guest House")
 									{
-										$type_of_room = 180;
+										$type_of_room = 26000;
 									}
 									else if($troom=="Single Room")
 									{
-										$type_of_room = 150;
+										$type_of_room = 22000;
 									}
 									
 									if($bed=="Single")
@@ -255,9 +255,9 @@ tr:hover .cut { opacity: 1; }
 		<header>
 			<h1>Invoice</h1>
 			<address >
-				<p>SUN RISE HOTEL,</p>
-				<p>New Kalmunani Road,<br>Battialoa,<br>Sri Lanka.</p>
-				<p>(+94) 65 222 44 55</p>
+				<p>OCEAN VIEW HOTEL,</p>
+				<p>Kalpitiya Beach Side,<br>1km from Kalpitiya Town,<br>Sri Lanka.</p>
+				<p>(+94) 32 225 8800</p>
 			</address>
 			<span><img alt="" src="assets/img/sun.png"></span>
 		</header>
@@ -291,23 +291,23 @@ tr:hover .cut { opacity: 1; }
 					<tr>
 						<td><span ><?php echo $troom; ?></span></td>
 						<td><span ><?php echo $days; ?> </span></td>
-						<td><span data-prefix>$</span><span ><?php  echo $type_of_room;?></span></td>
+						<td><span data-prefix>LKR </span><span ><?php  echo number_format($type_of_room);?></span></td>
 						<td><span ><?php echo $nroom;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $ttot; ?></span></td>
+						<td><span data-prefix>LKR </span><span><?php echo number_format($ttot); ?></span></td>
 					</tr>
 					<tr>
 						<td><span ><?php echo $bed; ?>  Bed </span></td>
 						<td><span ><?php echo $days; ?></span></td>
-						<td><span data-prefix>$</span><span ><?php  echo $type_of_bed;?></span></td>
+						<td><span data-prefix>LKR </span><span ><?php  echo number_format($type_of_bed);?></span></td>
 						<td><span ><?php echo $nroom;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $btot; ?></span></td>
+						<td><span data-prefix>LKR </span><span><?php echo number_format($btot); ?></span></td>
 					</tr>
 					<tr>
 						<td><span ><?php echo $meal; ?>  </span></td>
 						<td><span ><?php echo $days; ?></span></td>
-						<td><span data-prefix>$</span><span ><?php  echo $type_of_meal?></span></td>
+						<td><span data-prefix>LKR </span><span ><?php  echo number_format($type_of_meal)?></span></td>
 						<td><span ><?php echo $nroom;?> </span></td>
-						<td><span data-prefix>$</span><span><?php echo $mepr; ?></span></td>
+						<td><span data-prefix>LKR </span><span><?php echo number_format($mepr); ?></span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -315,22 +315,22 @@ tr:hover .cut { opacity: 1; }
 			<table class="balance">
 				<tr>
 					<th><span >Total</span></th>
-					<td><span data-prefix>$</span><span><?php echo $fintot; ?></span></td>
+					<td><span data-prefix>LKR </span><span><?php echo number_format($fintot); ?></span></td>
 				</tr>
 				<tr>
 					<th><span >Amount Paid</span></th>
-					<td><span data-prefix>$</span><span >0.00</span></td>
+					<td><span data-prefix>LKR </span><span >0.00</span></td>
 				</tr>
 				<tr>
 					<th><span >Balance Due</span></th>
-					<td><span data-prefix>$</span><span><?php echo $fintot; ?></span></td>
+					<td><span data-prefix>LKR </span><span><?php echo number_format($fintot); ?></span></td>
 				</tr>
 			</table>
 		</article>
 		<aside>
 			<h1><span >Contact us</span></h1>
 			<div >
-				<p align="center">Email :- info@sunrise.com || Web :- www.sunrise.com || Phone :- +94 65 222 44 55 </p>
+				<p align="center">Email :- info@oceanviewhotel.com || Web :- www.oceanviewhotel.com || Phone :- +94 32 225 8800 </p>
 			</div>
 		</aside>
 	</body>

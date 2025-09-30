@@ -387,7 +387,7 @@ include('db.php');
 								     </ul>
 							</div>
 							<div class="price-selet">	
-								<h3><span>$</span>320</h3>						
+								<h3><span>LKR</span> 45,000</h3>						
 								<a href="admin/reservation.php" >Book Now</a>
 							</div>
 						</div>
@@ -410,7 +410,7 @@ include('db.php');
 								</ul>
 							</div>
 							<div class="price-selet">
-								<h3><span>$</span>220</h3>
+								<h3><span>LKR</span> 32,000</h3>
 								<a href="admin/reservation.php" >Book Now</a>
 							</div>
 						</div>
@@ -433,7 +433,7 @@ include('db.php');
 								</ul>
 							</div>
 							<div class="price-selet">
-								<h3><span>$</span>180</h3>
+								<h3><span>LKR</span> 26,000</h3>
 								<a href="admin/reservation.php" >Book Now</a>
 							</div>
 						</div>
@@ -456,7 +456,7 @@ include('db.php');
 								</ul>
 							</div>
 							<div class="price-selet">
-								<h3><span>$</span> 150</h3>
+								<h3><span>LKR</span> 22,000</h3>
 								<a href="admin/reservation.php" >Book Now</a>
 							</div>
 						</div>
@@ -490,11 +490,9 @@ include('db.php');
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
-								Worth to come again
+								Breathtaking ocean views and perfect hospitality!
 								</h4>
-								<p>Sed tempus vestibulum lacus blandit faucibus. 
-									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
-									at imperdiet urna. </p>
+								<p>The panoramic sea view from our room was absolutely stunning! We woke up to dolphins playing in the distance. The staff was incredibly welcoming and the location is perfect for exploring Kalpitiya's beaches. Definitely the best hotel experience in Sri Lanka!</p>
 								<h5>Julia Rose</h5>
 								<p>Germany</p>
 							</div>
@@ -514,12 +512,10 @@ include('db.php');
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								Worth to come again
+								Amazing beach location with excellent service
 								</h4>
-								<p>Sed tempus vestibulum lacus blandit faucibus. 
-									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
-									at imperdiet urna. </p>
-								<h5>Jahnatan Smith</h5>
+								<p>Ocean View Hotel exceeded our expectations! The beachside location is unbeatable - just a short walk to pristine beaches. We enjoyed kite surfing and the famous Kalpitiya bar scene. The room was comfortable and the sea breeze from our balcony was refreshing. Great value for money!</p>
+								<h5>Jonathan Smith</h5>
 								<p>United States</p>
 							</div>
 							<div class="clearfix"> </div>
@@ -538,11 +534,9 @@ include('db.php');
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								Worth to come again
+								Perfect for our honeymoon celebration
 								</h4>
-								<p>Sed tempus vestibulum lacus blandit faucibus. 
-									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
-									at imperdiet urna. </p>
+								<p>We chose Ocean View Hotel for our honeymoon and it was magical! The sunset views from our room were romantic, the staff organized a beautiful beach dinner for us, and we loved exploring the nearby Wilpattu National Park. The 30 years of hospitality experience really shows in their attention to detail.</p>
 								<h5>Rosalind Cloer</h5>
 								<p>Italy</p>
 							</div>
@@ -562,11 +556,9 @@ include('db.php');
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								Worth to come again
+								Great family-friendly hotel with authentic Sri Lankan charm
 								</h4>
-								<p>Sed tempus vestibulum lacus blandit faucibus. 
-									Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula, 
-									at imperdiet urna. </p>
+								<p>Our family had a wonderful stay at Ocean View Hotel! The kids loved the beach access and we appreciated the clean, comfortable rooms. The local staff shared great tips about Kalpitiya's attractions. Only minor suggestion would be faster WiFi, but the natural beauty more than made up for it. We'll definitely return!</p>
 								<h5>Amie Bublitz</h5>
 								<p>Switzerland</p>
 							</div>

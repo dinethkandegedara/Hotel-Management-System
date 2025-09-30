@@ -172,11 +172,11 @@ if(!isset($_SESSION["user"]))
 													<td>".$row['cout']."</td>
 													
 													
-													<td>$".$row['ttot']."</td>
-													<td>$".$row['mepr']."</td>
-													<td>$".$row['btot']."</td>
-													<td>$".$row['fintot']."</td>
-													<td>$".$row['fintot']*10/100 ."</td>
+													<td>LKR ".number_format($row['ttot'])."</td>
+													<td>LKR ".number_format($row['mepr'])."</td>
+													<td>LKR ".number_format($row['btot'])."</td>
+													<td>LKR ".number_format($row['fintot'])."</td>
+													<td>LKR ".number_format($row['fintot']*10/100) ."</td>
 													</tr>";
 											}
 											else
@@ -189,11 +189,11 @@ if(!isset($_SESSION["user"]))
 													<td>".$row['cout']."</td>
 													
 													
-													<td>$".$row['ttot']."</td>
-													<td>$".$row['mepr']."</td>
-													<td>$".$row['btot']."</td>
-													<td>$".$row['fintot']."</td>
-													<td>$".$row['fintot']*10/100 ."</td>
+													<td>LKR ".number_format($row['ttot'])."</td>
+													<td>LKR ".number_format($row['mepr'])."</td>
+													<td>LKR ".number_format($row['btot'])."</td>
+													<td>LKR ".number_format($row['fintot'])."</td>
+													<td>LKR ".number_format($row['fintot']*10/100) ."</td>
 													</tr>";
 											
 											}
