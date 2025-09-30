@@ -1,0 +1,20 @@
+Database Name : - oceanview_hotel.sql
+user name : - Admin
+password  : - 1234
+
+OCEAN VIEW HOTEL - KALPITIYA BEACH
+=================================
+
+Hotel Details:
+- Location: Kalpitiya Beach Side, 1km from Kalpitiya town
+- History: 30 years of hospitality excellence
+- Staff: 50 dedicated employees across multiple departments
+- Services: Room reservations, meetings, cocktail parties, weddings, and special events
+- Features: Panoramic sea views, iconic beachside location
+- Clientele: Both local and foreign guests
+
+Contact Information:
+- Email: info@oceanviewhotel.com
+- Phone: +94 (32)225-8800
+
+ENJOY YOUR STAY AT OCEAN VIEW HOTEL!
