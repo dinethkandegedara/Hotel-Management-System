@@ -70,7 +70,6 @@
       $sql = "SELECT id FROM login WHERE usname = '$myusername' and pass = '$mypassword'";
       $result = mysqli_query($con,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
       
       $count = mysqli_num_rows($result);
       

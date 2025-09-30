@@ -216,39 +216,39 @@ tr:hover .cut { opacity: 1; }
 									
 									if($bed=="Single")
 									{
-										$type_of_bed = $type_of_room * 1/100;
+										$type_of_bed = 1500;
 									}
 									else if($bed=="Double")
 									{
-										$type_of_bed = $type_of_room * 2/100;
+										$type_of_bed = 2500;
 									}
 									else if($bed=="Triple")
 									{
-										$type_of_bed = $type_of_room * 3/100;
+										$type_of_bed = 3500;
 									}
 									else if($bed=="Quad")
 									{
-										$type_of_bed = $type_of_room * 4/100;
+										$type_of_bed = 4500;
 									}
 									else if($bed=="None")
 									{
-										$type_of_bed = $type_of_room * 0/100;
+										$type_of_bed = 0;
 									}
 									
 									if($meal=="Room only")
 									{
-										$type_of_meal=$type_of_bed * 0;
+										$type_of_meal = 0;
 									}
 									else if($meal=="Breakfast")
 									{
-										$type_of_meal=$type_of_bed * 2;
+										$type_of_meal = 2000;
 									}else if($meal=="Half Board")
 									{
-										$type_of_meal=$type_of_bed * 3;
+										$type_of_meal = 3500;
 									
 									}else if($meal=="Full Board")
 									{
-										$type_of_meal=$type_of_bed * 4;
+										$type_of_meal = 5000;
 									}
 	
 	?>
@@ -259,7 +259,6 @@ tr:hover .cut { opacity: 1; }
 				<p>Kalpitiya Beach Side,<br>1km from Kalpitiya Town,<br>Sri Lanka.</p>
 				<p>(+94) 32 225 8800</p>
 			</address>
-			<span><img alt="" src="assets/img/sun.png"></span>
 		</header>
 		<article>
 			<h1>Recipient</h1>

@@ -173,8 +173,8 @@ if(!isset($_SESSION["user"]))
 													
 													
 													<td>LKR ".number_format($row['ttot'])."</td>
-													<td>LKR ".number_format($row['mepr'])."</td>
 													<td>LKR ".number_format($row['btot'])."</td>
+													<td>LKR ".number_format($row['mepr'])."</td>
 													<td>LKR ".number_format($row['fintot'])."</td>
 													<td>LKR ".number_format($row['fintot']*10/100) ."</td>
 													</tr>";
@@ -190,8 +190,8 @@ if(!isset($_SESSION["user"]))
 													
 													
 													<td>LKR ".number_format($row['ttot'])."</td>
-													<td>LKR ".number_format($row['mepr'])."</td>
 													<td>LKR ".number_format($row['btot'])."</td>
+													<td>LKR ".number_format($row['mepr'])."</td>
 													<td>LKR ".number_format($row['fintot'])."</td>
 													<td>LKR ".number_format($row['fintot']*10/100) ."</td>
 													</tr>";
