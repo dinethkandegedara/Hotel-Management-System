@@ -1,4 +1,4 @@
-Database Name : - oceanview_hotel.sql
+Database Name : - hotel
 user name : - Admin
 password  : - 1234
 

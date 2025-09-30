@@ -66,7 +66,7 @@ p {
 .container {
   left: 50%;
   position:absolute;
-   top: 50%;
+   top: 40%;
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -248,7 +248,7 @@ p {
 	100% {margin-left: -1000px;}
 }
 .bottom {
-	width:100%; margin:0 auto; text-align:center; padding:10px 0; height:100px; position:absolute;
+	width:100%; margin:0 auto; text-align:center; padding:10px 0; height:100px; position:absolute; bottom:0;
 }
-.bottom h3 {color:white; font-size:30px; font-weight:bold; margin-top:45px; padding-bottom:45px;}
+.bottom h3 {color:white; font-size:24px; font-weight:bold; margin-top:20px; padding-bottom:20px;}
 .blue { color:#09c;}
