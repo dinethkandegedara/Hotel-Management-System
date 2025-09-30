@@ -15,63 +15,78 @@ include('db.php');
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
+<link href="css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/swipebox.css" rel="stylesheet">
-<!-- web font -->
-<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-<!-- //web font -->
+<script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
+<!--fonts-->
+<link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+<!--//fonts-->
 </head>
 <body>
 <!-- header -->
-<div class="header" id="home">
-	<div class="content white">
-		<nav class="navbar navbar-default">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<div class="banner-top">
+			<div class="social-bnr-agileits">
+				<ul class="social-icons3">
+								<li><a href="https://www.facebook.com/" class="fa fa-facebook icon-border facebook"> </a></li>
+								<li><a href="https://twitter.com/" class="fa fa-twitter icon-border twitter"> </a></li>
+								<li><a href="https://plus.google.com/u/0/" class="fa fa-google-plus icon-border googleplus"> </a></li> 
+							</ul>
+			</div>
+			<div class="contact-bnr-w3-agile">
+				<ul>
+					<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@oceanviewhotel.com">INFO@OCEANVIEWHOTEL.COM</a></li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i>+94 (32)225-8800</li>	
+					<li class="s-bar">
+						<div class="search">
+							<input class="search_box" type="checkbox" id="search_box">
+							<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+							<div class="search_form">
+								<form action="#" method="post">
+									<input type="search" name="Search" placeholder=" " required=" " />
+									<input type="submit" value="Search">
+								</form>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	<div class="w3_navigation">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header navbar-left">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
+					<h1><a class="navbar-brand" href="index.php">OCEAN <span>VIEW</span><p class="logo_w3l_agile_caption">Kalpitiya Beach Hotel</p></a></h1>
 				</div>
-				<!--/.navbar-header-->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<nav class="link-effect-2" id="link-effect-2">
-						<ul class="nav1 nav navbar-nav">
-							<li><a href="index.php" class="effect-3">Home</a></li>
-							<li><a href="index.php#about" class="effect-3">About</a></li>
-							<li><a href="index.php#gallery" class="effect-3">Gallery</a></li>
-							<li><a href="index.php#rooms" class="effect-3">Rooms</a></li>
-							<li><a href="food_order.php" class="effect-3">Food Order</a></li>
-							<li><a href="index.php#contact" class="effect-3">Contact Us</a></li>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<nav class="menu menu--iris">
+						<ul class="nav navbar-nav menu__list">
+							<li class="menu__item"><a href="index.php" class="menu__link">Home</a></li>
+							<li class="menu__item"><a href="index.php#about" class="menu__link scroll">About</a></li>
+							<li class="menu__item"><a href="index.php#gallery" class="menu__link scroll">Gallery</a></li>
+							<li class="menu__item"><a href="index.php#rooms" class="menu__link scroll">Rooms</a></li>
+							<li class="menu__item menu__item--current"><a href="food_order.php" class="menu__link">Food Order</a></li>
+							<li class="menu__item"><a href="index.php#contact" class="menu__link scroll">Contact Us</a></li>
 						</ul>
 					</nav>
 				</div>
-				<!--/.navbar-collapse-->
-				<!--/.navbar-->
-			</div>
-		</nav>
+			</nav>
+
+		</div>
 	</div>
-</div>
 <!-- //header -->
-<!-- header-bot -->
-<div class="header-bot">
-	<div class="header-bot_inner_wthreeinfo_header_mid">
-		<div class="col-md-4 header-middle">
-			<p>Call us : <span>+94 (32)225-8800</span></p>
-		</div>
-		<div class="col-md-4 logo">
-			<h1><a href="index.php">OCEAN VIEW<br><span>KALPITIYA BEACH HOTEL</span></a></h1>
-		</div>
-		<div class="col-md-4 header-right">
-			<p><i class="fa fa-map-marker" aria-hidden="true"></i>Kalpitiya Beach Side, 1km from Kalpitiya Town, Sri Lanka</p>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-<!-- //header-bot -->
 
 <!-- food order section -->
 <div class="banner-bottom">
