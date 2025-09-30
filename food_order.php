@@ -1,11 +1,10 @@
 <?php
 include('db.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>OCEAN VIEW HOTEL</title>
+<title>OCEAN VIEW HOTEL - Food Order</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -558,7 +557,7 @@ if(isset($_POST['place_order'])) {
     if($orders_placed > 0) {
         echo "<script>
                 alert('Order placed successfully! Total: LKR " . number_format($total_bill, 2) . "\\nYou will receive confirmation at $customer_email');
-                window.location='food_order_new.php';
+                window.location='food_order.php';
               </script>";
     } else {
         echo "<script>alert('Error placing order. Please try again.');</script>";

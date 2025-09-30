@@ -163,14 +163,79 @@ if(!isset($_SESSION["user"]))
 <?php
 include('db.php');
 
-// Mark order as complete
+// Mark order as complete and move to payment
 if(isset($_GET['complete_id'])) {
     $order_id = mysqli_real_escape_string($con, $_GET['complete_id']);
-    $sql = "UPDATE food_orders SET status = 'completed' WHERE id = '$order_id'";
-    if(mysqli_query($con, $sql)) {
-        echo "<script>alert('Order marked as completed!'); window.location='food_orders.php';</script>";
-    } else {
-        echo "<script>alert('Error updating order status!');</script>";
+    
+    // Start transaction
+    mysqli_begin_transaction($con);
+    
+    try {
+        // Get all orders for this customer's email from the same order time
+        $get_orders_sql = "SELECT fo.*, f.name as food_name, f.category, f.price 
+                          FROM food_orders fo 
+                          JOIN foods f ON fo.food_id = f.id 
+                          WHERE fo.email = (SELECT email FROM food_orders WHERE id = '$order_id') 
+                          AND DATE(fo.order_time) = DATE((SELECT order_time FROM food_orders WHERE id = '$order_id'))
+                          AND fo.status = 'pending'";
+        
+        $orders_result = mysqli_query($con, $get_orders_sql);
+        
+        if(mysqli_num_rows($orders_result) > 0) {
+            $total_amount = 0;
+            $customer_email = '';
+            $order_date = '';
+            $order_items = array();
+            
+            // Collect all order items
+            while($order = mysqli_fetch_array($orders_result)) {
+                $customer_email = $order['email'];
+                $order_date = $order['order_time'];
+                $total_amount += $order['bill_amount'];
+                
+                $order_items[] = array(
+                    'food_name' => $order['food_name'],
+                    'category' => $order['category'],
+                    'quantity' => $order['quantity'],
+                    'unit_price' => $order['price'],
+                    'total_price' => $order['bill_amount']
+                );
+            }
+            
+            // Create food payment record
+            $customer_name = explode('@', $customer_email)[0]; // Use email prefix as name
+            $payment_sql = "INSERT INTO food_payments (customer_name, customer_email, order_date, total_amount, payment_status) 
+                           VALUES ('$customer_name', '$customer_email', '$order_date', '$total_amount', 'pending')";
+            
+            if(mysqli_query($con, $payment_sql)) {
+                $payment_id = mysqli_insert_id($con);
+                
+                // Insert payment items
+                foreach($order_items as $item) {
+                    $item_sql = "INSERT INTO food_payment_items (payment_id, food_name, category, quantity, unit_price, total_price) 
+                                VALUES ('$payment_id', '".$item['food_name']."', '".$item['category']."', '".$item['quantity']."', '".$item['unit_price']."', '".$item['total_price']."')";
+                    mysqli_query($con, $item_sql);
+                }
+                
+                // Update all orders to completed status
+                $update_orders_sql = "UPDATE food_orders SET status = 'completed' 
+                                     WHERE email = '$customer_email' 
+                                     AND DATE(order_time) = DATE('$order_date') 
+                                     AND status = 'pending'";
+                mysqli_query($con, $update_orders_sql);
+                
+                // Commit transaction
+                mysqli_commit($con);
+                
+                echo "<script>alert('Order completed and moved to payment section!'); window.location='food_orders.php';</script>";
+            } else {
+                throw new Exception("Error creating payment record");
+            }
+        }
+    } catch (Exception $e) {
+        // Rollback transaction
+        mysqli_rollback($con);
+        echo "<script>alert('Error processing order: " . $e->getMessage() . "');</script>";
     }
 }
 ?>
