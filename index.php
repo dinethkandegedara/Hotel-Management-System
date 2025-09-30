@@ -155,10 +155,10 @@ include('db.php');
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4>SUN  <span>RISE</span></h4>
+										<h4>OCEAN  <span>VIEW</span></h4>
 										<img src="images/1.jpg" alt=" " class="img-responsive">
-										<h5>We know what you love</h5>
-										<p>Providing guests unique and enchanting views from their rooms with its exceptional amenities, makes Star Hotel one of bests in its kind.Try our food menu, awesome services and friendly staff while you are here.</p>
+										<h5>Kalpitiya's Premier Beachside Destination</h5>
+										<p>Ocean View Hotel offers breathtaking panoramic sea views from every room at our iconic Kalpitiya beach location. With 30 years of hospitality excellence and 50 dedicated staff members, we provide world-class accommodations, event hosting for weddings and celebrations, and unforgettable experiences just 1km from Kalpitiya town.</p>
 									</div>
 								</div>
 							</div>
