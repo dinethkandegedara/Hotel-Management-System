@@ -484,14 +484,14 @@ include('db.php');
 								</div>
 							</div>
 							<div class="w3layouts_work_grid_right">
-								<h4>
+								<div class="rating-stars">
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
-								Breathtaking ocean views and perfect hospitality!
-								</h4>
+								</div>
+								<h4>Breathtaking ocean views and perfect hospitality!</h4>
 								<p>The panoramic sea view from our room was absolutely stunning! We woke up to dolphins playing in the distance. The staff was incredibly welcoming and the location is perfect for exploring Kalpitiya's beaches. Definitely the best hotel experience in Sri Lanka!</p>
 								<h5>Julia Rose</h5>
 								<p>Germany</p>
@@ -506,14 +506,14 @@ include('db.php');
 								</div>
 							</div>
 							<div class="w3layouts_work_grid_right">
-								<h4>
+								<div class="rating-stars">
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								Amazing beach location with excellent service
-								</h4>
+								</div>
+								<h4>Amazing beach location with excellent service</h4>
 								<p>Ocean View Hotel exceeded our expectations! The beachside location is unbeatable - just a short walk to pristine beaches. We enjoyed kite surfing and the famous Kalpitiya bar scene. The room was comfortable and the sea breeze from our balcony was refreshing. Great value for money!</p>
 								<h5>Jonathan Smith</h5>
 								<p>United States</p>
@@ -528,14 +528,14 @@ include('db.php');
 								</div>
 							</div>
 							<div class="w3layouts_work_grid_right">
-								<h4>
+								<div class="rating-stars">
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								Perfect for our honeymoon celebration
-								</h4>
+								</div>
+								<h4>PERFECT FOR OUR HONEYMOON CELEBRATION</h4>
 								<p>We chose Ocean View Hotel for our honeymoon and it was magical! The sunset views from our room were romantic, the staff organized a beautiful beach dinner for us, and we loved exploring the nearby Wilpattu National Park. The 30 years of hospitality experience really shows in their attention to detail.</p>
 								<h5>Rosalind Cloer</h5>
 								<p>Italy</p>
@@ -550,14 +550,14 @@ include('db.php');
 								</div>
 							</div>
 							<div class="w3layouts_work_grid_right">
-								<h4>
+								<div class="rating-stars">
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
-								Great family-friendly hotel with authentic Sri Lankan charm
-								</h4>
+								</div>
+								<h4>Great family-friendly hotel with authentic Sri Lankan charm</h4>
 								<p>Our family had a wonderful stay at Ocean View Hotel! The kids loved the beach access and we appreciated the clean, comfortable rooms. The local staff shared great tips about Kalpitiya's attractions. Only minor suggestion would be faster WiFi, but the natural beauty more than made up for it. We'll definitely return!</p>
 								<h5>Amie Bublitz</h5>
 								<p>Switzerland</p>
