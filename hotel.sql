@@ -1,7 +1,7 @@
 -- Ocean View Hotel Database Setup
 -- Complete database structure for hotel management system
--- Date: 2025-09-30
--- Updated for deployment with all features
+-- Date: 2025-10-24
+-- Updated for deployment with all features including rooms page
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
