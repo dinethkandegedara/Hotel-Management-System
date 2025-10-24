@@ -2,43 +2,37 @@
 include('db.php');
 
 // Get filter parameters
-$room_type = isset($_GET['type']) ? $_GET['type'] : '';
-$bedding = isset($_GET['bedding']) ? $_GET['bedding'] : '';
-$max_price = isset($_GET['max_price']) ? $_GET['max_price'] : '';
-$search = isset($_GET['search']) ? $_GET['search'] : '';
+$room_type = isset($_GET['type']) ? trim($_GET['type']) : '';
+$bedding = isset($_GET['bedding']) ? trim($_GET['bedding']) : '';
+$max_price = isset($_GET['max_price']) ? trim($_GET['max_price']) : '';
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
-// Build query with filters
+// Build query with filters - using simple mysqli_query for better compatibility
 $query = "SELECT * FROM room WHERE 1=1";
-$params = array();
 
 if (!empty($room_type)) {
-    $query .= " AND type LIKE ?";
-    $params[] = "%$room_type%";
+    $room_type_escaped = mysqli_real_escape_string($con, $room_type);
+    $query .= " AND type LIKE '%$room_type_escaped%'";
 }
 
 if (!empty($bedding)) {
-    $query .= " AND bedding LIKE ?";
-    $params[] = "%$bedding%";
+    $bedding_escaped = mysqli_real_escape_string($con, $bedding);
+    $query .= " AND bedding LIKE '%$bedding_escaped%'";
 }
 
 if (!empty($search)) {
-    $query .= " AND (type LIKE ? OR place LIKE ? OR bedding LIKE ?)";
-    $params[] = "%$search%";
-    $params[] = "%$search%";
-    $params[] = "%$search%";
+    $search_escaped = mysqli_real_escape_string($con, $search);
+    $query .= " AND (type LIKE '%$search_escaped%' OR place LIKE '%$search_escaped%' OR bedding LIKE '%$search_escaped%')";
 }
 
 $query .= " ORDER BY id ASC";
 
 // Execute query
-if (!empty($params)) {
-    $stmt = $con->prepare($query);
-    $types = str_repeat('s', count($params));
-    $stmt->bind_param($types, ...$params);
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    $result = mysqli_query($con, $query);
+$result = mysqli_query($con, $query);
+
+// Check for query errors
+if (!$result) {
+    die("Database query failed: " . mysqli_error($con));
 }
 
 // Define pricing for different room types
@@ -430,13 +424,33 @@ $room_ratings = array(
     <div class="container">
         <h1>Our Rooms & Rates</h1>
         <p>Discover the perfect accommodation for your Kalpitiya beach getaway</p>
+        <?php 
+        $total_rooms = mysqli_num_rows($result);
+        if (!empty($search) || !empty($room_type) || !empty($bedding)) {
+            echo "<p style='margin-top: 10px; font-size: 16px;'><strong>$total_rooms</strong> room(s) found</p>";
+        }
+        ?>
     </div>
 </div>
 
 <!-- Search and Filter Section -->
 <div class="search-filter-section">
     <div class="container">
-        <form method="GET" action="rooms.php">
+        <?php
+        // Show active filters
+        $active_filters = array();
+        if (!empty($search)) $active_filters[] = "Search: '$search'";
+        if (!empty($room_type)) $active_filters[] = "Type: '$room_type'";
+        if (!empty($bedding)) $active_filters[] = "Bedding: '$bedding'";
+        
+        if (count($active_filters) > 0) {
+            echo "<div style='background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 8px; margin-bottom: 20px;'>";
+            echo "<strong><i class='fa fa-filter'></i> Active Filters:</strong> " . implode(" | ", $active_filters);
+            echo " <a href='rooms.php' style='margin-left: 15px; color: #dc3545;'><i class='fa fa-times'></i> Clear All</a>";
+            echo "</div>";
+        }
+        ?>
+        <form method="GET" action="rooms.php" id="filterForm">
             <div class="search-box">
                 <input type="text" name="search" placeholder="Search rooms by name, amenities, or location..." value="<?php echo htmlspecialchars($search); ?>">
                 <button type="submit"><i class="fa fa-search"></i> Search</button>
