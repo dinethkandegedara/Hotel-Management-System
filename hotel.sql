@@ -154,7 +154,14 @@ INSERT INTO room (type, bedding, place, area, size) VALUES
 ('Ocean View Double', 'Double', 'Ocean Front', 'Free WiFi, AC, Balcony, Mini Bar', 'Standard 300 sq ft'),
 ('Beach Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Living Area, Balcony', 'Luxury 500 sq ft'),
 ('Family Room', 'Twin + Sofa Bed', 'Garden View', 'Free WiFi, AC, Kitchenette', 'Large 400 sq ft'),
-('Deluxe Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Balcony', 'Premium 600 sq ft');
+('Deluxe Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Balcony', 'Premium 600 sq ft'),
+('Deluxe Room', 'Double', 'Ocean Front', 'Free WiFi, AC, Mini Bar, Balcony', 'Deluxe 350 sq ft'),
+('Luxury Room', 'King Size', 'Garden View', 'Free WiFi, AC, Premium Amenities', 'Spacious 380 sq ft'),
+('Guest House', 'Twin', 'Garden View', 'Free WiFi, Fan, Shared Kitchen', 'Budget 250 sq ft'),
+('Single Room', 'Single', 'City View', 'Free WiFi, AC, Work Desk', 'Cozy 180 sq ft'),
+('Superior Room', 'Queen Size', 'Ocean Front', 'Free WiFi, AC, Premium Toiletries', 'Superior 320 sq ft'),
+('Presidential Suite', 'King Size', 'Penthouse', 'Free WiFi, AC, Full Kitchen, Living & Dining', 'Exclusive 800 sq ft'),
+('Honeymoon Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Champagne', 'Romantic 650 sq ft');
 
 -- Insert sample food items for Ocean View Hotel
 INSERT INTO foods (name, category, price) VALUES
@@ -215,7 +222,7 @@ CREATE INDEX idx_food_payments_status ON food_payments(payment_status);
 ALTER TABLE contact MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE login MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 ALTER TABLE payment MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE room MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE room MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 ALTER TABLE roombook MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE foods MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 ALTER TABLE food_orders MODIFY id int(11) NOT NULL AUTO_INCREMENT;

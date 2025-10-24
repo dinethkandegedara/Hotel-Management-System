@@ -74,7 +74,7 @@ include('db.php');
 						<ul class="nav navbar-nav menu__list">
 							<li class="menu__item"><a href="index.php" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="index.php#about" class="menu__link scroll">About</a></li>
-							<li class="menu__item"><a href="index.php#rooms" class="menu__link scroll">Rooms</a></li>
+							<li class="menu__item"><a href="rooms.php" class="menu__link">Rooms</a></li>
 							<li class="menu__item menu__item--current"><a href="food_order.php" class="menu__link">Food Order</a></li>
 						</ul>
 					</nav>
