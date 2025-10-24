@@ -234,8 +234,8 @@ include('db.php');
     position: fixed;
     top: 120px;
     right: 30px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: #ffce14;
+    color: #2c3e50;
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -244,7 +244,7 @@ include('db.php');
     justify-content: center;
     font-size: 28px;
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 206, 20, 0.4);
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     animation: pulse 2s infinite;
@@ -252,15 +252,15 @@ include('db.php');
 
 @keyframes pulse {
     0%, 100% {
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 8px 25px rgba(255, 206, 20, 0.4);
     }
     50% {
-        box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6);
+        box-shadow: 0 8px 35px rgba(255, 206, 20, 0.6);
     }
 }
 
 .cart-widget:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background: #f0c000;
     transform: scale(1.15) rotate(10deg);
     animation: none;
 }
@@ -269,7 +269,7 @@ include('db.php');
     position: absolute;
     top: -8px;
     right: -8px;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    background: #dc3545;
     color: white;
     min-width: 30px;
     height: 30px;
@@ -326,7 +326,7 @@ include('db.php');
     transform: translateX(-50%);
     width: 100px;
     height: 5px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: #ffce14;
     border-radius: 10px;
 }
 
@@ -350,7 +350,7 @@ include('db.php');
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: #ffce14;
     transform: scaleX(0);
     transition: transform 0.4s ease;
 }
@@ -362,7 +362,7 @@ include('db.php');
 .food-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    border-color: #667eea;
+    border-color: #ffce14;
 }
 
 .food-item h5 {
@@ -387,24 +387,26 @@ include('db.php');
 
 .add-to-cart {
     width: 100%;
-    padding: 14px 20px;
-    font-weight: 700;
+    padding: 12px 20px;
+    font-weight: 600;
     border-radius: 50px;
     border: none;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-size: 1em;
+    background: #ffce14;
+    color: #2c3e50;
+    font-size: 0.85em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 206, 20, 0.3);
     cursor: pointer;
+    text-align: center;
+    display: block;
 }
 
 .add-to-cart:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    box-shadow: 0 8px 25px rgba(255, 206, 20, 0.5);
+    background: #f0c000;
 }
 
 .add-to-cart:active {
@@ -452,8 +454,8 @@ include('db.php');
 }
 
 .qty-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: #ffce14;
+    color: #2c3e50;
     border: none;
     width: 35px;
     height: 35px;
@@ -462,11 +464,11 @@ include('db.php');
     font-weight: bold;
     font-size: 16px;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 3px 10px rgba(255, 206, 20, 0.3);
 }
 
 .qty-btn:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background: #f0c000;
     transform: scale(1.1);
 }
 
@@ -478,20 +480,20 @@ include('db.php');
 }
 
 .remove-item {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    background: #dc3545;
     color: white;
     border: none;
     padding: 8px 15px;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
 }
 
 .remove-item:hover {
-    background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+    background: #c82333;
     transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
 }
 
 .cart-total {
@@ -537,10 +539,10 @@ include('db.php');
 
 .btn {
     padding: 15px 40px;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     border-radius: 50px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0 10px;
@@ -548,39 +550,39 @@ include('db.php');
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: #ffce14;
+    color: #2c3e50;
+    box-shadow: 0 6px 20px rgba(255, 206, 20, 0.4);
 }
 
 .btn-success:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    background: #f0c000;
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 10px 30px rgba(255, 206, 20, 0.5);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #868e96 0%, #6c757d 100%);
+    background: #6c757d;
     color: white;
     box-shadow: 0 6px 20px rgba(108, 117, 125, 0.3);
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    background: #5a6268;
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(108, 117, 125, 0.4);
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    background: #dc3545;
     color: white;
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
 }
 
 .btn-danger:hover {
-    background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+    background: #c82333;
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
 }
 
 /* Responsive Design */
@@ -608,7 +610,7 @@ include('db.php');
 
 /* Modal Enhancements */
 .modal-header {
-    border-bottom: 3px solid #667eea;
+    border-bottom: 3px solid #ffce14;
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     border-radius: 5px 5px 0 0;
     padding: 20px 30px;
