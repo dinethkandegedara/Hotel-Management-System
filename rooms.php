@@ -90,10 +90,22 @@ $room_ratings = array(
 <style>
 /* Rooms Page Specific Styles */
 .rooms-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
     color: white;
     padding: 60px 0 40px;
     margin-top: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.rooms-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #ffce14;
 }
 
 .rooms-header h1 {
@@ -129,26 +141,27 @@ $room_ratings = array(
 }
 
 .search-box input:focus {
-    border-color: #667eea;
+    border-color: #ffce14;
     outline: none;
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 0 10px rgba(255, 206, 20, 0.3);
 }
 
 .search-box button {
     position: absolute;
     right: 5px;
     top: 5px;
-    background: #667eea;
+    background: #ffce14;
     border: none;
     padding: 10px 25px;
     border-radius: 25px;
-    color: white;
+    color: #2c3e50;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .search-box button:hover {
-    background: #5568d3;
+    background: #f0c000;
 }
 
 .filter-options {
@@ -180,7 +193,7 @@ $room_ratings = array(
 }
 
 .filter-group select:focus {
-    border-color: #667eea;
+    border-color: #ffce14;
     outline: none;
 }
 
@@ -201,12 +214,13 @@ $room_ratings = array(
 }
 
 .btn-apply {
-    background: #667eea;
-    color: white;
+    background: #ffce14;
+    color: #2c3e50;
+    font-weight: 600;
 }
 
 .btn-apply:hover {
-    background: #5568d3;
+    background: #f0c000;
 }
 
 .btn-clear {
@@ -302,7 +316,7 @@ $room_ratings = array(
 }
 
 .room-features i {
-    color: #667eea;
+    color: #ffce14;
     margin-right: 10px;
     width: 20px;
 }
@@ -319,7 +333,7 @@ $room_ratings = array(
 .room-price {
     font-size: 28px;
     font-weight: 700;
-    color: #667eea;
+    color: #28a745;
 }
 
 .room-price span {
@@ -329,8 +343,8 @@ $room_ratings = array(
 }
 
 .btn-book {
-    background: #667eea;
-    color: white;
+    background: #ffce14;
+    color: #2c3e50;
     padding: 12px 30px;
     border-radius: 25px;
     text-decoration: none;
@@ -340,8 +354,8 @@ $room_ratings = array(
 }
 
 .btn-book:hover {
-    background: #5568d3;
-    color: white;
+    background: #f0c000;
+    color: #2c3e50;
     text-decoration: none;
     transform: translateY(-2px);
 }
