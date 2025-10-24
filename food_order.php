@@ -92,79 +92,123 @@ include('db.php');
 			<div class="col-md-12 wthree_banner_bottom_right">
 				<h3 class="title-w3-agileits title-black-wthree">Room Service - <span class="title-w3-agileits1">Food Order</span></h3>
 				
+				<!-- Floating Cart Widget -->
+				<div id="cartWidget" class="cart-widget">
+					<i class="fa fa-shopping-cart"></i>
+					<span id="cartCount" class="cart-count">0</span>
+				</div>
+
 				<div class="food-order-container">
-					<form method="post" id="foodOrderForm">
-						<div class="customer-email-section">
-							<div class="row">
-								<div class="col-md-6 col-md-offset-3">
-									<div class="form-group">
-										<label for="customer_email">Customer Email <span style="color:red;">*</span></label>
-										<input type="email" name="customer_email" id="customer_email" class="form-control" required placeholder="Enter your email for order confirmation">
-									</div>
-								</div>
-							</div>
-						</div>
+					<!-- Food Menu -->
+					<div class="food-menu">
+						<?php
+						// Get all categories
+						$categories_sql = "SELECT DISTINCT category FROM foods ORDER BY category";
+						$categories_result = mysqli_query($con, $categories_sql);
 						
-						<div class="food-menu">
-							<?php
-							// Get all categories
-							$categories_sql = "SELECT DISTINCT category FROM foods ORDER BY category";
-							$categories_result = mysqli_query($con, $categories_sql);
+						while($category_row = mysqli_fetch_array($categories_result)) {
+							$category = $category_row['category'];
+							echo "<div class='food-category'>";
+							echo "<h3 class='category-title'>".$category."</h3>";
+							echo "<div class='row'>";
 							
-							while($category_row = mysqli_fetch_array($categories_result)) {
-								$category = $category_row['category'];
-								echo "<div class='food-category'>";
-								echo "<h3 class='category-title'>".$category."</h3>";
-								echo "<div class='row'>";
-								
-								// Get foods for this category
-								$food_sql = "SELECT * FROM foods WHERE category = '$category' ORDER BY name";
-								$food_result = mysqli_query($con, $food_sql);
-								
-								while($food = mysqli_fetch_array($food_result)) {
-									echo "<div class='col-md-4 col-sm-6 mb-4'>";
-									echo "<div class='food-item'>";
-									echo "<h5>".$food['name']."</h5>";
-									echo "<p class='price'>LKR ".number_format($food['price'], 2)."</p>";
-									echo "<div class='quantity-control'>";
-									echo "<label>Quantity:</label>";
-									echo "<select name='quantity[".$food['id']."]' class='form-control quantity-select' data-price='".$food['price']."' data-name='".$food['name']."'>";
-									echo "<option value='0'>0</option>";
-									for($i = 1; $i <= 10; $i++) {
-										echo "<option value='$i'>$i</option>";
-									}
-									echo "</select>";
-									echo "</div>";
-									echo "</div>";
-									echo "</div>";
-								}
+							// Get foods for this category
+							$food_sql = "SELECT * FROM foods WHERE category = '$category' ORDER BY name";
+							$food_result = mysqli_query($con, $food_sql);
+							
+							while($food = mysqli_fetch_array($food_result)) {
+								echo "<div class='col-md-4 col-sm-6 mb-4'>";
+								echo "<div class='food-item'>";
+								echo "<h5>".$food['name']."</h5>";
+								echo "<p class='price'>LKR ".number_format($food['price'], 2)."</p>";
+								echo "<button type='button' class='btn btn-primary add-to-cart' 
+									data-id='".$food['id']."' 
+									data-name='".$food['name']."' 
+									data-price='".$food['price']."'>
+									<i class='fa fa-cart-plus'></i> Add to Cart
+								</button>";
 								echo "</div>";
 								echo "</div>";
 							}
-							?>
-						</div>
-						
-						<div class="order-summary-section">
-							<div class="row">
-								<div class="col-md-6 col-md-offset-3">
-									<div class="order-summary">
-										<h4>Order Summary</h4>
-										<div id="orderItems"></div>
-										<div class="total-section">
-											<h5>Total: LKR <span id="totalAmount">0.00</span></h5>
-										</div>
-									</div>
+							echo "</div>";
+							echo "</div>";
+						}
+						?>
+					</div>
+				</div>
+
+				<!-- Cart Modal -->
+				<div class="modal fade" id="cartModal" tabindex="-1" role="dialog">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title"><i class="fa fa-shopping-cart"></i> Your Cart</h4>
+							</div>
+							<div class="modal-body">
+								<div id="cartItems">
+									<p class="text-center text-muted">Your cart is empty</p>
+								</div>
+								<div class="cart-total">
+									<h4>Total: LKR <span id="cartTotal">0.00</span></h4>
 								</div>
 							</div>
-						</div>
-						
-						<div class="order-actions">
-							<div class="text-center">
-								<button type="submit" name="place_order" class="btn btn-success btn-lg">Place Order</button>
-								<button type="button" class="btn btn-secondary" onclick="clearOrder()">Clear Order</button>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+								<button type="button" class="btn btn-danger" onclick="clearCart()">
+									<i class="fa fa-trash"></i> Clear Cart
+								</button>
+								<button type="button" class="btn btn-success" onclick="proceedToCheckout()" id="checkoutBtn" disabled>
+									<i class="fa fa-check"></i> Proceed to Checkout
+								</button>
 							</div>
 						</div>
-					</form>
+					</div>
+				</div>
+
+				<!-- Checkout Modal -->
+				<div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title"><i class="fa fa-credit-card"></i> Checkout</h4>
+							</div>
+							<form method="post" id="checkoutForm">
+								<div class="modal-body">
+									<div class="form-group">
+										<label>Your Email <span style="color:red;">*</span></label>
+										<input type="email" name="customer_email" id="customer_email" class="form-control" required 
+											placeholder="Enter your email for order confirmation">
+									</div>
+									<div class="form-group">
+										<label>Room Number (Optional)</label>
+										<input type="text" name="room_number" class="form-control" 
+											placeholder="Enter your room number if applicable">
+									</div>
+									<div class="form-group">
+										<label>Special Instructions (Optional)</label>
+										<textarea name="special_instructions" class="form-control" rows="3" 
+											placeholder="Any special requests or dietary requirements"></textarea>
+									</div>
+									<div class="checkout-summary">
+										<h5>Order Summary:</h5>
+										<div id="checkoutItems"></div>
+										<div class="checkout-total">
+											<h4>Total Amount: LKR <span id="checkoutTotal">0.00</span></h4>
+										</div>
+									</div>
+									<input type="hidden" name="cart_data" id="cartData">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+									<button type="submit" name="place_order" class="btn btn-success btn-lg">
+										<i class="fa fa-check-circle"></i> Place Order
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>	
@@ -182,6 +226,48 @@ include('db.php');
 /* Food Order Page Specific Styles */
 .food-order-container {
     padding: 40px 0;
+}
+
+/* Cart Widget */
+.cart-widget {
+    position: fixed;
+    top: 120px;
+    right: 30px;
+    background: #28a745;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.cart-widget:hover {
+    background: #218838;
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc3545;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid white;
 }
 
 .customer-email-section {
@@ -256,49 +342,121 @@ include('db.php');
     margin-bottom: 20px;
 }
 
-.quantity-control label {
-    color: #2c3e50;
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
     font-weight: 600;
-    margin-bottom: 8px;
-    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-.quantity-select {
-    max-width: 80px;
-    margin: 0 auto;
-    text-align: center;
-    font-weight: 600;
+.add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
 }
 
-.order-summary-section {
-    margin: 40px 0;
-}
-
-.order-summary {
+/* Cart Modal Styles */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
     background: #f8f9fa;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
-.order-summary h4 {
-    color: #2c3e50;
-    font-size: 1.8em;
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
     font-weight: 700;
-    margin-bottom: 20px;
-    text-transform: uppercase;
+    color: #2c3e50;
+    font-size: 1.1em;
 }
 
-.total-section {
+.cart-item-price {
+    color: #28a745;
+    font-weight: 600;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.qty-btn:hover {
+    background: #0056b3;
+}
+
+.qty-display {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.remove-item {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    background: #c82333;
+}
+
+.cart-total {
     margin-top: 20px;
     padding-top: 20px;
     border-top: 2px solid #dee2e6;
+    text-align: right;
 }
 
-.total-section h5 {
+.cart-total h4 {
     color: #28a745;
-    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* Checkout Styles */
+.checkout-summary {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.checkout-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.checkout-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #28a745;
+    text-align: right;
+}
+
+.checkout-total h4 {
+    color: #28a745;
     font-weight: 700;
 }
 
@@ -365,79 +523,188 @@ include('db.php');
 <script src="js/jqBootstrapValidation.js"></script>
 
 <script>
-// Order calculation functionality
-function updateOrderSummary() {
-    var orderItems = [];
-    var total = 0;
-    
-    $('.quantity-select').each(function() {
-        var quantity = parseInt($(this).val());
-        if (quantity > 0) {
-            var price = parseFloat($(this).data('price'));
-            var name = $(this).data('name');
-            var itemTotal = quantity * price;
-            
-            orderItems.push({
-                name: name,
-                quantity: quantity,
-                price: price,
-                total: itemTotal
-            });
-            
-            total += itemTotal;
-        }
-    });
-    
-    // Update order summary
-    var summaryHtml = '';
-    if (orderItems.length > 0) {
-        orderItems.forEach(function(item) {
-            summaryHtml += '<div class="order-item">';
-            summaryHtml += '<span class="item-name">' + item.name + '</span>';
-            summaryHtml += '<span class="item-details"> × ' + item.quantity + ' = LKR ' + item.total.toFixed(2) + '</span>';
-            summaryHtml += '</div>';
-        });
-    } else {
-        summaryHtml = '<p class="text-muted">No items selected</p>';
+// Simple Cart System using sessionStorage
+let cart = [];
+
+// Load cart from sessionStorage on page load
+function loadCart() {
+    const savedCart = sessionStorage.getItem('foodCart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
     }
-    
-    $('#orderItems').html(summaryHtml);
-    $('#totalAmount').text(total.toFixed(2));
+    updateCartDisplay();
 }
 
-// Clear order function
-function clearOrder() {
-    $('.quantity-select').val('0');
-    updateOrderSummary();
+// Save cart to sessionStorage
+function saveCart() {
+    sessionStorage.setItem('foodCart', JSON.stringify(cart));
+    updateCartDisplay();
+}
+
+// Add item to cart
+function addToCart(id, name, price) {
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({
+            id: id,
+            name: name,
+            price: parseFloat(price),
+            quantity: 1
+        });
+    }
+    
+    saveCart();
+    
+    // Visual feedback
+    const btn = event.target.closest('.add-to-cart');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fa fa-check"></i> Added!';
+    btn.style.background = '#28a745';
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+    }, 1000);
+}
+
+// Update cart count and enable/disable buttons
+function updateCartDisplay() {
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    $('#cartCount').text(count);
+    
+    if (count > 0) {
+        $('#checkoutBtn').prop('disabled', false);
+    } else {
+        $('#checkoutBtn').prop('disabled', true);
+    }
+    
+    renderCartItems();
+}
+
+// Render cart items in modal
+function renderCartItems() {
+    let html = '';
+    let total = 0;
+    
+    if (cart.length === 0) {
+        html = '<p class="text-center text-muted">Your cart is empty</p>';
+    } else {
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            html += `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">LKR ${item.price.toFixed(2)} each</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                        <span class="qty-display">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        <button class="remove-item" onclick="removeItem(${index})">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+    
+    $('#cartItems').html(html);
+    $('#cartTotal').text(total.toFixed(2));
+}
+
+// Update item quantity
+function updateQuantity(index, change) {
+    cart[index].quantity += change;
+    
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+    
+    saveCart();
+}
+
+// Remove item from cart
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+}
+
+// Clear entire cart
+function clearCart() {
+    if (confirm('Are you sure you want to clear your cart?')) {
+        cart = [];
+        saveCart();
+    }
+}
+
+// Proceed to checkout
+function proceedToCheckout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    // Populate checkout summary
+    let html = '';
+    let total = 0;
+    
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        html += `
+            <div class="checkout-item">
+                <strong>${item.name}</strong> × ${item.quantity} = LKR ${itemTotal.toFixed(2)}
+            </div>
+        `;
+    });
+    
+    $('#checkoutItems').html(html);
+    $('#checkoutTotal').text(total.toFixed(2));
+    
+    // Set cart data as hidden input for form submission
+    $('#cartData').val(JSON.stringify(cart));
+    
+    // Close cart modal and open checkout modal
+    $('#cartModal').modal('hide');
+    $('#checkoutModal').modal('show');
 }
 
 $(document).ready(function() {
-    // Update order summary when quantities change
-    $('.quantity-select').on('change', updateOrderSummary);
+    // Load cart on page load
+    loadCart();
     
-    // Initial update
-    updateOrderSummary();
+    // Cart widget click
+    $('#cartWidget').click(function() {
+        $('#cartModal').modal('show');
+    });
     
-    // Form validation
-    $('#foodOrderForm').on('submit', function(e) {
-        var hasItems = false;
-        $('.quantity-select').each(function() {
-            if (parseInt($(this).val()) > 0) {
-                hasItems = true;
-                return false;
-            }
-        });
-        
-        if (!hasItems) {
-            e.preventDefault();
-            alert('Please select at least one item to order.');
-            return false;
-        }
-        
-        var email = $('#customer_email').val();
+    // Add to cart button click
+    $(document).on('click', '.add-to-cart', function() {
+        const id = $(this).data('id');
+        const name = $(this).data('name');
+        const price = $(this).data('price');
+        addToCart(id, name, price);
+    });
+    
+    // Checkout form submission
+    $('#checkoutForm').on('submit', function(e) {
+        const email = $('#customer_email').val();
         if (!email) {
             e.preventDefault();
             alert('Please enter your email address.');
+            return false;
+        }
+        
+        if (cart.length === 0) {
+            e.preventDefault();
+            alert('Your cart is empty!');
             return false;
         }
     });
@@ -454,38 +721,45 @@ $(document).ready(function() {
 // Process order submission
 if(isset($_POST['place_order'])) {
     $customer_email = mysqli_real_escape_string($con, $_POST['customer_email']);
+    $room_number = mysqli_real_escape_string($con, $_POST['room_number']);
+    $special_instructions = mysqli_real_escape_string($con, $_POST['special_instructions']);
     $order_time = date('Y-m-d H:i:s');
     $total_bill = 0;
     $orders_placed = 0;
     
-    // Process each food item
-    if(isset($_POST['quantity'])) {
-        foreach($_POST['quantity'] as $food_id => $quantity) {
-            if($quantity > 0) {
-                // Get food details
-                $food_sql = "SELECT * FROM foods WHERE id = '$food_id'";
-                $food_result = mysqli_query($con, $food_sql);
-                $food = mysqli_fetch_array($food_result);
-                
-                if($food) {
-                    $bill_amount = $food['price'] * $quantity;
-                    $total_bill += $bill_amount;
-                    
-                    // Insert order
-                    $order_sql = "INSERT INTO food_orders (email, food_id, quantity, order_time, bill_amount) 
-                                 VALUES ('$customer_email', '$food_id', '$quantity', '$order_time', '$bill_amount')";
-                    
-                    if(mysqli_query($con, $order_sql)) {
-                        $orders_placed++;
-                    }
-                }
+    // Get cart data from hidden input
+    if(isset($_POST['cart_data']) && !empty($_POST['cart_data'])) {
+        $cart_items = json_decode($_POST['cart_data'], true);
+        
+        foreach($cart_items as $item) {
+            $food_id = mysqli_real_escape_string($con, $item['id']);
+            $quantity = mysqli_real_escape_string($con, $item['quantity']);
+            $price = mysqli_real_escape_string($con, $item['price']);
+            
+            $bill_amount = $price * $quantity;
+            $total_bill += $bill_amount;
+            
+            // Insert order
+            $order_sql = "INSERT INTO food_orders (email, food_id, quantity, order_time, bill_amount) 
+                         VALUES ('$customer_email', '$food_id', '$quantity', '$order_time', '$bill_amount')";
+            
+            if(mysqli_query($con, $order_sql)) {
+                $orders_placed++;
             }
         }
     }
     
     if($orders_placed > 0) {
+        $order_details = "Order placed successfully!\\n";
+        $order_details .= "Total: LKR " . number_format($total_bill, 2) . "\\n";
+        $order_details .= "Confirmation email sent to: $customer_email";
+        if($room_number) {
+            $order_details .= "\\nRoom Number: $room_number";
+        }
+        
         echo "<script>
-                alert('Order placed successfully! Total: LKR " . number_format($total_bill, 2) . "\\nYou will receive confirmation at $customer_email');
+                alert('$order_details');
+                sessionStorage.removeItem('foodCart');
                 window.location='food_order.php';
               </script>";
     } else {
