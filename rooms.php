@@ -22,7 +22,7 @@ if (!empty($bedding)) {
 }
 
 if (!empty($search)) {
-    $query .= " AND (type LIKE ? OR place LIKE ? OR area LIKE ?)";
+    $query .= " AND (type LIKE ? OR place LIKE ? OR bedding LIKE ?)";
     $params[] = "%$search%";
     $params[] = "%$search%";
     $params[] = "%$search%";
