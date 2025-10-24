@@ -121,12 +121,14 @@ include('db.php');
 								echo "<div class='food-item'>";
 								echo "<h5>".$food['name']."</h5>";
 								echo "<p class='price'>LKR ".number_format($food['price'], 2)."</p>";
+								echo "<div class='text-center'>";
 								echo "<button type='button' class='btn btn-primary add-to-cart' 
 									data-id='".$food['id']."' 
 									data-name='".$food['name']."' 
 									data-price='".$food['price']."'>
 									<i class='fa fa-cart-plus'></i> Add to Cart
 								</button>";
+								echo "</div>";
 								echo "</div>";
 								echo "</div>";
 							}
