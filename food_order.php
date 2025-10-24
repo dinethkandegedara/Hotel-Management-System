@@ -226,6 +226,7 @@ include('db.php');
 /* Food Order Page Specific Styles */
 .food-order-container {
     padding: 40px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
 }
 
 /* Cart Widget */
@@ -233,41 +234,54 @@ include('db.php');
     position: fixed;
     top: 120px;
     right: 30px;
-    background: #28a745;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 35px rgba(102, 126, 234, 0.6);
+    }
 }
 
 .cart-widget:hover {
-    background: #218838;
-    transform: scale(1.1);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: scale(1.15) rotate(10deg);
+    animation: none;
 }
 
 .cart-count {
     position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #dc3545;
+    top: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
     color: white;
-    width: 25px;
-    height: 25px;
+    min-width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
-    border: 2px solid white;
+    border: 3px solid white;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    padding: 0 6px;
 }
 
 .customer-email-section {
@@ -285,74 +299,116 @@ include('db.php');
 }
 
 .food-category {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
 }
 
 .category-title {
     color: #2c3e50;
-    font-size: 2.2em;
-    font-weight: 700;
+    font-size: 2.5em;
+    font-weight: 800;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     position: relative;
+    padding-bottom: 20px;
 }
 
 .category-title:after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: #ffce14;
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
 }
 
 .food-item {
     background: white;
-    border: 2px solid #e9ecef;
-    border-radius: 15px;
-    padding: 25px;
+    border: 1px solid #e9ecef;
+    border-radius: 20px;
+    padding: 30px 20px;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.food-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.food-item:hover::before {
+    transform: scaleX(1);
 }
 
 .food-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    border-color: #ffce14;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border-color: #667eea;
 }
 
 .food-item h5 {
     color: #2c3e50;
-    font-size: 1.4em;
+    font-size: 1.5em;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-transform: capitalize;
+    letter-spacing: 0.5px;
 }
 
 .food-item .price {
     color: #28a745;
-    font-size: 1.3em;
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-size: 1.6em;
+    font-weight: 800;
+    margin-bottom: 25px;
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #f0fff4 0%, #e8f8ed 100%);
+    border-radius: 25px;
 }
 
 .add-to-cart {
     width: 100%;
-    padding: 12px;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    padding: 14px 20px;
+    font-weight: 700;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    cursor: pointer;
 }
 
 .add-to-cart:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.add-to-cart:active {
+    transform: translateY(-1px);
 }
 
 /* Cart Modal Styles */
@@ -360,11 +416,18 @@ include('db.php');
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #dee2e6;
-    background: #f8f9fa;
-    margin-bottom: 10px;
-    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transform: translateX(5px);
 }
 
 .cart-item-info {
@@ -389,18 +452,22 @@ include('db.php');
 }
 
 .qty-btn {
-    background: #007bff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
 }
 
 .qty-btn:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: scale(1.1);
 }
 
 .qty-display {
@@ -411,16 +478,20 @@ include('db.php');
 }
 
 .remove-item {
-    background: #dc3545;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
     color: white;
     border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 8px 15px;
+    border-radius: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
 }
 
 .remove-item:hover {
-    background: #c82333;
+    background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
 }
 
 .cart-total {
@@ -469,34 +540,47 @@ include('db.php');
     font-size: 1.1em;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 30px;
-    transition: all 0.3s ease;
+    letter-spacing: 1.5px;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0 10px;
+    border: none;
 }
 
 .btn-success {
-    background: linear-gradient(45deg, #28a745, #20c997);
-    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 .btn-success:hover {
-    background: linear-gradient(45deg, #218838, #1ea080);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(40,167,69,0.3);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
 }
 
 .btn-secondary {
-    background: linear-gradient(45deg, #6c757d, #5a6268);
-    border: none;
+    background: linear-gradient(135deg, #868e96 0%, #6c757d 100%);
     color: white;
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.3);
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(45deg, #5a6268, #495057);
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(108,117,125,0.3);
+    box-shadow: 0 10px 30px rgba(108, 117, 125, 0.4);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
 }
 
 /* Responsive Design */
@@ -514,6 +598,44 @@ include('db.php');
         width: 100%;
         margin: 10px 0;
     }
+    
+    .cart-widget {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+}
+
+/* Modal Enhancements */
+.modal-header {
+    border-bottom: 3px solid #667eea;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 5px 5px 0 0;
+    padding: 20px 30px;
+}
+
+.modal-title {
+    color: #2c3e50;
+    font-weight: 800;
+    font-size: 1.8em;
+    letter-spacing: 1px;
+}
+
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.modal-footer {
+    border-top: 2px solid #e9ecef;
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-radius: 0 0 20px 20px;
 }
 </style>
 
