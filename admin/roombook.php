@@ -559,8 +559,8 @@ if(!isset($_SESSION["user"]))
 														$psql = "INSERT INTO `payment`(`id`, `title`, `fname`, `lname`, `troom`, `tbed`, `nroom`, `cin`, `cout`, `ttot`,`meal`, `mepr`, `btot`,`fintot`,`noofdays`) VALUES ('$id','$title','$fname','$lname','$troom','$bed','$nroom','$cin','$cout','$ttot','$meal','$mepr','$btot','$fintot','$days')";
 														
 														if(mysqli_query($con,$psql))
-														{	$notfree="NotFree";
-															$rpsql = "UPDATE `room` SET `place`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
+														{	$notfree="Booked";
+															$rpsql = "UPDATE `room` SET `status`='$notfree',`cusid`='$id' where bedding ='$bed' and type='$troom' ";
 															if(mysqli_query($con,$rpsql))
 															{
 															echo "<script type='text/javascript'> alert('Booking Conform')</script>";
