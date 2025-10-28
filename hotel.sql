@@ -65,6 +65,8 @@ CREATE TABLE IF NOT EXISTS room (
     place varchar(100) NOT NULL,
     area varchar(100) NOT NULL,
     size varchar(100) NOT NULL,
+    status varchar(20) DEFAULT 'Available',
+    cusid int(11) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -149,19 +151,17 @@ CREATE TABLE IF NOT EXISTS food_payment_items (
 INSERT INTO login (username, password) VALUES ('admin', 'admin');
 
 -- Insert sample room types for Ocean View Hotel
-INSERT INTO room (type, bedding, place, area, size) VALUES
-('Ocean View Single', 'Single', 'Ocean Front', 'Free WiFi, AC, Balcony', 'Compact 200 sq ft'),
-('Ocean View Double', 'Double', 'Ocean Front', 'Free WiFi, AC, Balcony, Mini Bar', 'Standard 300 sq ft'),
-('Beach Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Living Area, Balcony', 'Luxury 500 sq ft'),
-('Family Room', 'Twin + Sofa Bed', 'Garden View', 'Free WiFi, AC, Kitchenette', 'Large 400 sq ft'),
-('Deluxe Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Balcony', 'Premium 600 sq ft'),
-('Deluxe Room', 'Double', 'Ocean Front', 'Free WiFi, AC, Mini Bar, Balcony', 'Deluxe 350 sq ft'),
-('Luxury Room', 'King Size', 'Garden View', 'Free WiFi, AC, Premium Amenities', 'Spacious 380 sq ft'),
-('Guest House', 'Twin', 'Garden View', 'Free WiFi, Fan, Shared Kitchen', 'Budget 250 sq ft'),
-('Single Room', 'Single', 'City View', 'Free WiFi, AC, Work Desk', 'Cozy 180 sq ft'),
-('Superior Room', 'Queen Size', 'Ocean Front', 'Free WiFi, AC, Premium Toiletries', 'Superior 320 sq ft'),
-('Presidential Suite', 'King Size', 'Penthouse', 'Free WiFi, AC, Full Kitchen, Living & Dining', 'Exclusive 800 sq ft'),
-('Honeymoon Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Champagne', 'Romantic 650 sq ft');
+INSERT INTO room (type, bedding, place, area, size, status) VALUES
+('Ocean View Single', 'Single', 'Ocean Front', 'Free WiFi, AC, Balcony', 'Compact 200 sq ft', 'Available'),
+('Ocean View Double', 'Double', 'Ocean Front', 'Free WiFi, AC, Balcony, Mini Bar', 'Standard 300 sq ft', 'Available'),
+('Beach Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Living Area, Balcony', 'Luxury 500 sq ft', 'Available'),
+('Family Room', 'Twin + Sofa Bed', 'Garden View', 'Free WiFi, AC, Kitchenette', 'Large 400 sq ft', 'Available'),
+('Deluxe Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Balcony', 'Premium 600 sq ft', 'Available'),
+('Deluxe Room', 'Double', 'Ocean Front', 'Free WiFi, AC, Mini Bar, Balcony', 'Deluxe 350 sq ft', 'Available'),
+('Luxury Room', 'King Size', 'Garden View', 'Free WiFi, AC, Premium Amenities', 'Spacious 380 sq ft', 'Available'),
+('Guest House', 'Twin', 'Garden View', 'Free WiFi, Fan, Shared Kitchen', 'Budget 250 sq ft', 'Available'),
+('Single Room', 'Single', 'City View', 'Free WiFi, AC, Work Desk', 'Cozy 180 sq ft', 'Available'),
+('Superior Room', 'Queen Size', 'Ocean Front', 'Free WiFi, AC, Premium Toiletries', 'Superior 320 sq ft', 'Available');
 
 -- Insert sample food items for Ocean View Hotel
 INSERT INTO foods (name, category, price) VALUES
@@ -222,7 +222,7 @@ CREATE INDEX idx_food_payments_status ON food_payments(payment_status);
 ALTER TABLE contact MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE login MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 ALTER TABLE payment MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE room MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+ALTER TABLE room MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 ALTER TABLE roombook MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE foods MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 ALTER TABLE food_orders MODIFY id int(11) NOT NULL AUTO_INCREMENT;
