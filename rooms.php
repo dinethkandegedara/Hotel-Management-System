@@ -7,8 +7,9 @@ $bedding = isset($_GET['bedding']) ? trim($_GET['bedding']) : '';
 $max_price = isset($_GET['max_price']) ? trim($_GET['max_price']) : '';
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
-// Build query with filters - using simple mysqli_query for better compatibility
-$query = "SELECT * FROM room WHERE 1=1";
+// Build query with filters - only show AVAILABLE rooms to customers
+// Using the 'status' column to check availability
+$query = "SELECT * FROM room WHERE status = 'Available'";
 
 if (!empty($room_type)) {
     $room_type_escaped = mysqli_real_escape_string($con, $room_type);
@@ -22,7 +23,7 @@ if (!empty($bedding)) {
 
 if (!empty($search)) {
     $search_escaped = mysqli_real_escape_string($con, $search);
-    $query .= " AND (type LIKE '%$search_escaped%' OR place LIKE '%$search_escaped%' OR bedding LIKE '%$search_escaped%')";
+    $query .= " AND (type LIKE '%$search_escaped%' OR bedding LIKE '%$search_escaped%')";
 }
 
 $query .= " ORDER BY id ASC";
@@ -439,9 +440,29 @@ $room_ratings = array(
         <h1>Our Rooms & Rates</h1>
         <p>Discover the perfect accommodation for your Kalpitiya beach getaway</p>
         <?php 
+        // Get total available rooms count
+        $available_query = "SELECT COUNT(*) as available FROM room WHERE status = 'Available'";
+        $available_result = mysqli_query($con, $available_query);
+        $available_row = mysqli_fetch_assoc($available_result);
+        $available_count = $available_row['available'];
+        
+        // Get total rooms count
+        $total_query = "SELECT COUNT(*) as total FROM room";
+        $total_result = mysqli_query($con, $total_query);
+        $total_row = mysqli_fetch_assoc($total_result);
+        $total_count = $total_row['total'];
+        
+        $booked_count = $total_count - $available_count;
+        
         $total_rooms = mysqli_num_rows($result);
         if (!empty($search) || !empty($room_type) || !empty($bedding)) {
             echo "<p style='margin-top: 10px; font-size: 16px;'><strong>$total_rooms</strong> room(s) found</p>";
+        } else {
+            echo "<p style='margin-top: 10px; font-size: 16px;'>";
+            echo "<span style='color: #28a745; font-weight: bold;'>$available_count Available</span> | ";
+            echo "<span style='color: #dc3545; font-weight: bold;'>$booked_count Booked</span> | ";
+            echo "<span style='color: #6c757d; font-weight: bold;'>$total_count Total Rooms</span>";
+            echo "</p>";
         }
         ?>
     </div>
@@ -568,13 +589,29 @@ $room_ratings = array(
             <?php 
                 }
             } else {
+                // Check if there are any rooms in database but all booked
+                $total_rooms_query = "SELECT COUNT(*) as total FROM room";
+                $total_result = mysqli_query($con, $total_rooms_query);
+                $total_row = mysqli_fetch_assoc($total_result);
+                $has_rooms = $total_row['total'] > 0;
+                
+                $free_rooms_query = "SELECT COUNT(*) as free FROM room WHERE status = 'Available'";
+                $free_result = mysqli_query($con, $free_rooms_query);
+                $free_row = mysqli_fetch_assoc($free_result);
+                $free_count = $free_row['free'];
             ?>
             <div class="col-md-12">
                 <div class="no-rooms">
                     <i class="fa fa-bed"></i>
-                    <h3>No rooms found</h3>
-                    <p>Try adjusting your search or filter criteria</p>
-                    <a href="rooms.php" class="btn-filter btn-apply" style="margin-top: 20px; display: inline-block;">View All Rooms</a>
+                    <?php if ($free_count == 0 && $has_rooms) { ?>
+                        <h3>All Rooms Are Currently Booked</h3>
+                        <p>Sorry, all our rooms are currently occupied. Please check back later or contact us for availability.</p>
+                        <p style="margin-top: 15px;"><i class="fa fa-phone"></i> Call us: +94 (32)225-8800</p>
+                    <?php } else { ?>
+                        <h3>No rooms found</h3>
+                        <p>Try adjusting your search or filter criteria</p>
+                    <?php } ?>
+                    <a href="rooms.php" class="btn-filter btn-apply" style="margin-top: 20px; display: inline-block;">View All Available Rooms</a>
                 </div>
             </div>
             <?php } ?>
