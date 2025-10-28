@@ -81,7 +81,7 @@ if(!isset($_SESSION["user"]))
 			 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                           Available <small> Rooms</small>
+                           All Rooms <small>Inventory & Status</small>
                         </h1>
                     </div>
                 </div> 
@@ -90,79 +90,57 @@ if(!isset($_SESSION["user"]))
             <?php
 						include ('db.php');
 						$sql = "select * from room";
-						$re = mysqli_query($con,$sql)
+						$re = mysqli_query($con,$sql);
+						
+						// Define color classes for different room types
+						$room_colors = array(
+							'Superior Room' => 'blue',
+							'Deluxe Room' => 'green',
+							'Guest House' => 'brown',
+							'Single Room' => 'red',
+							'Ocean View Single' => 'blue',
+							'Ocean View Double' => 'green',
+							'Beach Suite' => 'blue',
+							'Family Room' => 'green',
+							'Deluxe Suite' => 'red',
+							'Luxury Room' => 'brown'
+						);
 				?>
                 <div class="row">
 				
 				
 				<?php
+										$count = 0;
 										while($row= mysqli_fetch_array($re))
 										{
-												$id = $row['type'];
-											if($id == "Superior Room") 
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-blue'>
+												$count++;
+												$type = $row['type'];
+												$room_num = isset($row['room_number']) ? $row['room_number'] : 'N/A';
+												$status = isset($row['status']) ? $row['status'] : 'Available';
+												
+												// Determine color based on room type
+												$color = isset($room_colors[$type]) ? $room_colors[$type] : 'blue';
+												
+												// Show status color
+												$status_icon = ($status == 'Available') ? 'fa-check-circle' : 'fa-ban';
+												$status_color = ($status == 'Available') ? 'green' : 'red';
+												
+												echo"<div class='col-md-3 col-sm-6 col-xs-12'>
+													<div class='panel panel-primary text-center no-boder bg-color-".$color."'>
 														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
+															<i class='fa fa-bed fa-5x'></i>
 															<h3>".$row['bedding']."</h3>
+															<p style='margin:5px 0; font-size:14px;'><strong>Room #".$room_num."</strong></p>
+															<p style='margin:5px 0;'><i class='fa ".$status_icon."' style='color:".$status_color.";'></i> ".$status."</p>
 														</div>
-														<div class='panel-footer back-footer-blue'>
+														<div class='panel-footer back-footer-".$color."'>
 															".$row['type']."
-
 														</div>
 													</div>
 												</div>";
-											}
-											else if ($id == "Deluxe Room")
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-green'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-green'>
-															".$row['type']."
-
-														</div>
-													</div>
-												</div>";
-											
-											}
-											else if($id =="Guest House")
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-brown'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-brown'>
-															".$row['type']."
-
-														</div>
-													</div>
-												</div>";
-											
-											}
-											else if($id =="Single Room")
-											{
-												echo"<div class='col-md-3 col-sm-12 col-xs-12'>
-													<div class='panel panel-primary text-center no-boder bg-color-red'>
-														<div class='panel-body'>
-															<i class='fa fa-users fa-5x'></i>
-															<h3>".$row['bedding']."</h3>
-														</div>
-														<div class='panel-footer back-footer-red'>
-															".$row['type']."
-
-														</div>
-													</div>
-												</div>";
-											
-											}
 										}
+										
+										echo "<div class='col-md-12'><h4>Total Rooms: <strong>$count</strong></h4></div>";
 									?>
                     
                 </div>
