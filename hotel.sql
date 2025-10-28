@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS contact (
 
 -- Admin users
 CREATE TABLE IF NOT EXISTS login (
-    id int(11) NOT NULL AUTO_INCREMENT,
-    username varchar(50) NOT NULL,
-    password varchar(50) NOT NULL,
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    usname varchar(30) DEFAULT NULL,
+    pass varchar(30) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS payment (
 
 -- Rooms table
 CREATE TABLE IF NOT EXISTS room (
-    id int(11) NOT NULL AUTO_INCREMENT,
-    type varchar(100) NOT NULL,
-    bedding varchar(100) NOT NULL,
-    room_number varchar(20) NOT NULL,
-    place varchar(100) NOT NULL,
-    area varchar(100) NOT NULL,
-    size varchar(100) NOT NULL,
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    type varchar(15) DEFAULT NULL,
+    bedding varchar(10) DEFAULT NULL,
+    room_number varchar(20) DEFAULT NULL,
+    place varchar(10) DEFAULT NULL,
+    area varchar(100) NOT NULL DEFAULT 'Free WiFi, AC',
+    size varchar(100) NOT NULL DEFAULT 'Standard 300 sq ft',
     status varchar(20) DEFAULT 'Available',
     cusid int(11) DEFAULT NULL,
     PRIMARY KEY (id),
@@ -74,22 +74,22 @@ CREATE TABLE IF NOT EXISTS room (
 
 -- Room booking table
 CREATE TABLE IF NOT EXISTS roombook (
-    id int(11) NOT NULL AUTO_INCREMENT,
-    Title varchar(5) NOT NULL,
-    FName varchar(50) NOT NULL,
-    LName varchar(50) NOT NULL,
-    Email varchar(50) NOT NULL,
-    National varchar(20) NOT NULL,
-    Country varchar(30) NOT NULL,
-    Phone varchar(20) NOT NULL,
-    TRoom varchar(20) NOT NULL,
-    Bed varchar(20) NOT NULL,
-    NRoom varchar(20) NOT NULL,
-    Meal varchar(20) NOT NULL,
-    cin date NOT NULL,
-    cout date NOT NULL,
-    stat varchar(15) NOT NULL DEFAULT 'NotConfirm',
-    nodays int(11) NOT NULL,
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    Title varchar(5) DEFAULT NULL,
+    FName text,
+    LName text,
+    Email varchar(50) DEFAULT NULL,
+    National varchar(30) DEFAULT NULL,
+    Country varchar(30) DEFAULT NULL,
+    Phone text,
+    TRoom varchar(20) DEFAULT NULL,
+    Bed varchar(10) DEFAULT NULL,
+    NRoom varchar(2) DEFAULT NULL,
+    Meal varchar(15) DEFAULT NULL,
+    cin date DEFAULT NULL,
+    cout date DEFAULT NULL,
+    stat varchar(15) DEFAULT NULL,
+    nodays int(11) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -145,12 +145,21 @@ CREATE TABLE IF NOT EXISTS food_payment_items (
     FOREIGN KEY (payment_id) REFERENCES food_payments(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Newsletter log table
+CREATE TABLE IF NOT EXISTS newsletterlog (
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    title varchar(52) DEFAULT NULL,
+    subject varchar(100) DEFAULT NULL,
+    news text,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- ==============================
 -- SAMPLE DATA
 -- ==============================
 
--- Insert default admin user (username: admin, password: admin)
-INSERT INTO login (username, password) VALUES ('admin', 'admin');
+-- Insert default admin user (username: Admin, password: 1234)
+INSERT INTO login (usname, pass) VALUES ('Admin', '1234');
 
 -- Insert sample room types for Ocean View Hotel
 INSERT INTO room (type, bedding, room_number, place, area, size, status) VALUES
@@ -222,14 +231,15 @@ CREATE INDEX idx_food_payments_status ON food_payments(payment_status);
 -- ==============================
 
 ALTER TABLE contact MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE login MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE login MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 ALTER TABLE payment MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE room MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-ALTER TABLE roombook MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE room MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE roombook MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT;
 ALTER TABLE foods MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 ALTER TABLE food_orders MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE food_payments MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE food_payment_items MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE newsletterlog MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
