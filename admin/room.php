@@ -131,6 +131,7 @@ if(!isset($_SESSION["user"]))
 										$room = $_POST['troom'];
 										$bed = $_POST['bed'];
 										$place = 'Free';
+										$status = 'Available';
 										
 										$check="SELECT * FROM room WHERE type = '$room' AND bedding = '$bed'";
 										$rs = mysqli_query($con,$check);
@@ -144,7 +145,7 @@ if(!isset($_SESSION["user"]))
 										{
 							 
 										
-										$sql ="INSERT INTO `room`( `type`, `bedding`,`place`) VALUES ('$room','$bed','$place')" ;
+										$sql ="INSERT INTO `room`( `type`, `bedding`,`place`,`status`) VALUES ('$room','$bed','$place','$status')" ;
 										if(mysqli_query($con,$sql))
 										{
 										 echo '<script>alert("New Room Added") </script>' ;
