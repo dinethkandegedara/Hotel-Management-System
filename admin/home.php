@@ -102,13 +102,107 @@ if(!isset($_SESSION["user"]))
                 <div class="row">
                     <div class="col-md-12">
                         <h1 class="page-header">
-                            Status <small>Room Booking </small>
+                            Dashboard <small>Overview</small>
                         </h1>
+                    </div>
+                </div>
+                
+                <!-- Room Statistics -->
+                <?php
+						include ('db.php');
+						
+						// Get total rooms
+						$total_rooms_query = "SELECT COUNT(*) as total FROM room";
+						$total_rooms_result = mysqli_query($con, $total_rooms_query);
+						$total_rooms_row = mysqli_fetch_assoc($total_rooms_result);
+						$total_rooms = $total_rooms_row['total'];
+						
+						// Get available rooms (check if status column exists)
+						$check_status = mysqli_query($con, "SHOW COLUMNS FROM room LIKE 'status'");
+						$has_status = mysqli_num_rows($check_status) > 0;
+						
+						if($has_status) {
+							$available_query = "SELECT COUNT(*) as available FROM room WHERE status = 'Available'";
+							$available_result = mysqli_query($con, $available_query);
+							$available_row = mysqli_fetch_assoc($available_result);
+							$available_rooms = $available_row['available'];
+							
+							$booked_query = "SELECT COUNT(*) as booked FROM room WHERE status = 'Booked'";
+							$booked_result = mysqli_query($con, $booked_query);
+							$booked_row = mysqli_fetch_assoc($booked_result);
+							$booked_rooms = $booked_row['booked'];
+						} else {
+							$available_rooms = $total_rooms;
+							$booked_rooms = 0;
+						}
+						
+						// Get booking statistics
+						$total_bookings_query = "SELECT COUNT(*) as total FROM roombook";
+						$total_bookings_result = mysqli_query($con, $total_bookings_query);
+						$total_bookings_row = mysqli_fetch_assoc($total_bookings_result);
+						$total_bookings = $total_bookings_row['total'];
+				?>
+				
+				<div class="row">
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="panel panel-primary text-center no-boder bg-color-blue">
+							<div class="panel-body">
+								<i class="fa fa-building-o fa-5x"></i>
+								<h3><?php echo $total_rooms; ?></h3>
+							</div>
+							<div class="panel-footer back-footer-blue">
+								Total Rooms
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="panel panel-primary text-center no-boder bg-color-green">
+							<div class="panel-body">
+								<i class="fa fa-check-circle fa-5x"></i>
+								<h3><?php echo $available_rooms; ?></h3>
+							</div>
+							<div class="panel-footer back-footer-green">
+								Available Rooms
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="panel panel-primary text-center no-boder bg-color-red">
+							<div class="panel-body">
+								<i class="fa fa-ban fa-5x"></i>
+								<h3><?php echo $booked_rooms; ?></h3>
+							</div>
+							<div class="panel-footer back-footer-red">
+								Booked Rooms
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="panel panel-primary text-center no-boder bg-color-brown">
+							<div class="panel-body">
+								<i class="fa fa-calendar fa-5x"></i>
+								<h3><?php echo $total_bookings; ?></h3>
+							</div>
+							<div class="panel-footer back-footer-brown">
+								Total Bookings
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                <!-- Booking Status Section -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-header" style="margin-top: 30px;">
+                            Room Booking Status
+                        </h2>
                     </div>
                 </div>
                 <!-- /. ROW  -->
 				<?php
-						include ('db.php');
 						$sql = "select * from roombook";
 						$re = mysqli_query($con,$sql);
 						$c =0;
