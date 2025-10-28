@@ -556,6 +556,12 @@ $room_ratings = array(
                     
                     <div class="room-details">
                         <h3 class="room-title"><?php echo $room_name; ?></h3>
+                        <?php 
+                        $room_num = isset($row['room_number']) ? $row['room_number'] : '';
+                        if($room_num) {
+                            echo '<p style="color:#ffce14; font-weight:600; margin:5px 0;"><i class="fa fa-door-open"></i> Room #' . $room_num . '</p>';
+                        }
+                        ?>
                         
                         <div class="room-rating">
                             <?php 
