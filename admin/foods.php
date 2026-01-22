@@ -55,29 +55,72 @@ if(!isset($_SESSION["user"]))
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
+
                     <li>
-                        <a href="home.php"><i class="fa fa-dashboard"></i> Status</a>
+                        <a href="home.php"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
+                    
                     <li>
-                        <a href="messages.php"><i class="fa fa-desktop"></i> News</a>
+                        <a href="#"><i class="fa fa-book"></i> Reservations<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="reservation.php"><i class="fa fa-plus-circle"></i> New Reservation</a>
+                            </li>
+                            <li>
+                                <a href="roombook.php"><i class="fa fa-list"></i> View Bookings</a>
+                            </li>
+                            <li>
+                                <a href="payment.php"><i class="fa fa-money"></i> Payments</a>
+                            </li>
+                            <li>
+                                <a href="profit.php"><i class="fa fa-bar-chart-o"></i> Profit Report</a>
+                            </li>
+                        </ul>
                     </li>
+                    
                     <li>
-                        <a href="roombook.php"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
+                        <a href="#"><i class="fa fa-bed"></i> Room Management<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="settings.php"><i class="fa fa-list-alt"></i> View All Rooms</a>
+                            </li>
+                            <li>
+                                <a href="room.php"><i class="fa fa-plus-circle"></i> Add New Room</a>
+                            </li>
+                            <li>
+                                <a href="roomdel.php"><i class="fa fa-trash-o"></i> Delete Room</a>
+                            </li>
+                        </ul>
                     </li>
+                    
                     <li>
-                        <a href="room.php"><i class="fa fa-qrcode"></i> Room</a>
+                        <a href="#"><i class="fa fa-cutlery"></i> Food Management<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="active-menu" href="foods.php"><i class="fa fa-list"></i> Food Items</a>
+                            </li>
+                            <li>
+                                <a href="food_orders.php"><i class="fa fa-shopping-cart"></i> Food Orders</a>
+                            </li>
+                        </ul>
                     </li>
+                    
                     <li>
-                        <a href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
+                        <a href="messages.php"><i class="fa fa-envelope"></i> Newsletters</a>
                     </li>
+                    
                     <li>
-                        <a class="active-menu" href="foods.php"><i class="fa fa-cutlery"></i> Food Management</a>
+                        <a href="usersetting.php"><i class="fa fa-users"></i> User Management</a>
                     </li>
+                    
                     <li>
-                        <a href="food_orders.php"><i class="fa fa-list"></i> Food Orders</a>
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                     </li>
+
                 </ul>
+
             </div>
+
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >

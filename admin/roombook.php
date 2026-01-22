@@ -7,14 +7,13 @@ if(!isset($_SESSION["user"]))
 ?> 
 
 <?php
-		if(!isset($_GET["rid"]))
-		{
-				
-			 header("location:index.php");
-		}
-		else {
-				$curdate=date("Y/m/d");
-				include ('db.php');
+		$curdate=date("Y/m/d");
+		include ('db.php');
+		
+		// Check if we're viewing a specific booking or listing all bookings
+		$viewMode = isset($_GET["rid"]) ? 'single' : 'list';
+		
+		if($viewMode == 'single') {
 				$id = $_GET['rid'];
 				
 				
@@ -42,11 +41,7 @@ if(!isset($_SESSION["user"]))
 				
 				
 				}
-					
-					
-				
-		
-	}
+		}
 		
 		
 		
@@ -109,29 +104,67 @@ if(!isset($_SESSION["user"]))
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a  href="home.php"><i class="fa fa-dashboard"></i> Status</a>
-                    </li>
-                    <li>
-                        <a href="messages.php"><i class="fa fa-desktop"></i> News Letters</a>
-                    </li>
-					<li>
-                        <a class="active-menu" href="roombook.php"><i class="fa fa-bar-chart-o"></i> Room Booking</a>
-                    </li>
-                    <li>
-                        <a href="payment.php"><i class="fa fa-qrcode"></i> Payment</a>
-                    </li>
-					<li>
-                        <a  href="profit.php"><i class="fa fa-qrcode"></i> Profit</a>
+                        <a href="home.php"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     
                     <li>
-                        <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <a href="#"><i class="fa fa-book"></i> Reservations<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="reservation.php"><i class="fa fa-plus-circle"></i> New Reservation</a>
+                            </li>
+                            <li>
+                                <a class="active-menu" href="roombook.php"><i class="fa fa-list"></i> View Bookings</a>
+                            </li>
+                            <li>
+                                <a href="payment.php"><i class="fa fa-money"></i> Payments</a>
+                            </li>
+                            <li>
+                                <a href="profit.php"><i class="fa fa-bar-chart-o"></i> Profit Report</a>
+                            </li>
+                        </ul>
                     </li>
                     
+                    <li>
+                        <a href="#"><i class="fa fa-bed"></i> Room Management<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="settings.php"><i class="fa fa-list-alt"></i> View All Rooms</a>
+                            </li>
+                            <li>
+                                <a href="room.php"><i class="fa fa-plus-circle"></i> Add New Room</a>
+                            </li>
+                            <li>
+                                <a href="roomdel.php"><i class="fa fa-trash-o"></i> Delete Room</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="#"><i class="fa fa-cutlery"></i> Food Management<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="foods.php"><i class="fa fa-list"></i> Food Items</a>
+                            </li>
+                            <li>
+                                <a href="food_orders.php"><i class="fa fa-shopping-cart"></i> Food Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="messages.php"><i class="fa fa-envelope"></i> Newsletters</a>
+                    </li>
+                    
+                    <li>
+                        <a href="usersetting.php"><i class="fa fa-users"></i> User Management</a>
+                    </li>
+                    
+                    <li>
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                    </li>
 
-
-                    
-					</ul>
+                </ul>
 
             </div>
 
@@ -152,7 +185,61 @@ if(!isset($_SESSION["user"]))
                         </h1>
                     </div>
 					
-					
+					<?php if($viewMode == 'list'): ?>
+					<!-- Booking List View -->
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								All Room Bookings
+							</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Guest Name</th>
+												<th>Email</th>
+												<th>Room Type</th>
+												<th>No. of Rooms</th>
+												<th>Check-in</th>
+												<th>Check-out</th>
+												<th>Days</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$sql = "SELECT * FROM roombook ORDER BY id DESC";
+											$result = mysqli_query($con, $sql);
+											if(mysqli_num_rows($result) > 0) {
+												while($row = mysqli_fetch_array($result)) {
+													echo "<tr>";
+													echo "<td>" . $row['id'] . "</td>";
+													echo "<td>" . $row['Title'] . " " . $row['FName'] . " " . $row['LName'] . "</td>";
+													echo "<td>" . $row['Email'] . "</td>";
+													echo "<td>" . $row['TRoom'] . "</td>";
+													echo "<td>" . $row['NRoom'] . "</td>";
+													echo "<td>" . $row['cin'] . "</td>";
+													echo "<td>" . $row['cout'] . "</td>";
+													echo "<td>" . $row['nodays'] . "</td>";
+													echo "<td>" . $row['stat'] . "</td>";
+													echo "<td><a href='roombook.php?rid=" . $row['id'] . "' class='btn btn-primary btn-xs'>View Details</a></td>";
+													echo "</tr>";
+												}
+											} else {
+												echo "<tr><td colspan='10' class='text-center'>No bookings found</td></tr>";
+											}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<?php else: ?>
+					<!-- Single Booking View -->
 					<div class="col-md-8 col-sm-8">
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -424,6 +511,7 @@ if(!isset($_SESSION["user"]))
 					</div>
                 </div>
                 <!-- /. ROW  -->
+				<?php endif; ?>
 				
                 </div>
                 <!-- /. ROW  -->
