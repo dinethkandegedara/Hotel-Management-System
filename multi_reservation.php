@@ -372,7 +372,32 @@ foreach ($cart_rooms as $room) {
                                 </script>";
                             }
                         }
-
+                    }
+                }
+                ?>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JS Scripts-->
+    <script src="admin/assets/js/jquery-1.10.2.js"></script>
+    <script src="admin/assets/js/bootstrap.min.js"></script>
+    <script src="admin/assets/js/jquery.metisMenu.js"></script>
+    <script src="admin/assets/js/custom-scripts.js"></script>
+    
+    <script>
+    const totalPerNight = <?php echo $total_per_night; ?>;
+    
+    function calculateTotal() {
+        const checkin = document.getElementById('checkin').value;
+        const checkout = document.getElementById('checkout').value;
+        
+        if(checkin && checkout) {
+            const date1 = new Date(checkin);
+            const date2 = new Date(checkout);
+            const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             
             if(diffDays > 0 && date2 > date1) {
