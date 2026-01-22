@@ -373,7 +373,6 @@ foreach ($cart_rooms as $room) {
                             }
                         }
                     }
-                }
                 ?>
                 
                 </form>
