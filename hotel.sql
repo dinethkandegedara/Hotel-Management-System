@@ -1,7 +1,7 @@
 -- Ocean View Hotel Database Setup
 -- Complete database structure for hotel management system
--- Date: 2025-09-30
--- Updated for deployment with all features
+-- Date: 2025-10-24
+-- Updated for deployment with all features including rooms page
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS contact (
 
 -- Admin users
 CREATE TABLE IF NOT EXISTS login (
-    id int(11) NOT NULL AUTO_INCREMENT,
-    username varchar(50) NOT NULL,
-    password varchar(50) NOT NULL,
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    usname varchar(30) DEFAULT NULL,
+    pass varchar(30) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -59,33 +59,37 @@ CREATE TABLE IF NOT EXISTS payment (
 
 -- Rooms table
 CREATE TABLE IF NOT EXISTS room (
-    id int(11) NOT NULL AUTO_INCREMENT,
-    type varchar(100) NOT NULL,
-    bedding varchar(100) NOT NULL,
-    place varchar(100) NOT NULL,
-    area varchar(100) NOT NULL,
-    size varchar(100) NOT NULL,
-    PRIMARY KEY (id)
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    type varchar(15) DEFAULT NULL,
+    bedding varchar(10) DEFAULT NULL,
+    room_number varchar(20) DEFAULT NULL,
+    place varchar(10) DEFAULT NULL,
+    area varchar(100) NOT NULL DEFAULT 'Free WiFi, AC',
+    size varchar(100) NOT NULL DEFAULT 'Standard 300 sq ft',
+    status varchar(20) DEFAULT 'Available',
+    cusid int(11) DEFAULT NULL,
+    PRIMARY KEY (id),
+    UNIQUE KEY unique_room_number (room_number)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Room booking table
 CREATE TABLE IF NOT EXISTS roombook (
-    id int(11) NOT NULL AUTO_INCREMENT,
-    Title varchar(5) NOT NULL,
-    FName varchar(50) NOT NULL,
-    LName varchar(50) NOT NULL,
-    Email varchar(50) NOT NULL,
-    National varchar(20) NOT NULL,
-    Country varchar(30) NOT NULL,
-    Phone varchar(20) NOT NULL,
-    TRoom varchar(20) NOT NULL,
-    Bed varchar(20) NOT NULL,
-    NRoom varchar(20) NOT NULL,
-    Meal varchar(20) NOT NULL,
-    cin date NOT NULL,
-    cout date NOT NULL,
-    stat varchar(15) NOT NULL DEFAULT 'NotConfirm',
-    nodays int(11) NOT NULL,
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    Title varchar(5) DEFAULT NULL,
+    FName text,
+    LName text,
+    Email varchar(50) DEFAULT NULL,
+    National varchar(30) DEFAULT NULL,
+    Country varchar(30) DEFAULT NULL,
+    Phone text,
+    TRoom varchar(20) DEFAULT NULL,
+    Bed varchar(10) DEFAULT NULL,
+    NRoom varchar(2) DEFAULT NULL,
+    Meal varchar(15) DEFAULT NULL,
+    cin date DEFAULT NULL,
+    cout date DEFAULT NULL,
+    stat varchar(15) DEFAULT NULL,
+    nodays int(11) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -141,20 +145,34 @@ CREATE TABLE IF NOT EXISTS food_payment_items (
     FOREIGN KEY (payment_id) REFERENCES food_payments(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Newsletter log table
+CREATE TABLE IF NOT EXISTS newsletterlog (
+    id int(10) unsigned NOT NULL AUTO_INCREMENT,
+    title varchar(52) DEFAULT NULL,
+    subject varchar(100) DEFAULT NULL,
+    news text,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- ==============================
 -- SAMPLE DATA
 -- ==============================
 
--- Insert default admin user (username: admin, password: admin)
-INSERT INTO login (username, password) VALUES ('admin', 'admin');
+-- Insert default admin user (username: Admin, password: 1234)
+INSERT INTO login (usname, pass) VALUES ('Admin', '1234');
 
 -- Insert sample room types for Ocean View Hotel
-INSERT INTO room (type, bedding, place, area, size) VALUES
-('Ocean View Single', 'Single', 'Ocean Front', 'Free WiFi, AC, Balcony', 'Compact 200 sq ft'),
-('Ocean View Double', 'Double', 'Ocean Front', 'Free WiFi, AC, Balcony, Mini Bar', 'Standard 300 sq ft'),
-('Beach Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Living Area, Balcony', 'Luxury 500 sq ft'),
-('Family Room', 'Twin + Sofa Bed', 'Garden View', 'Free WiFi, AC, Kitchenette', 'Large 400 sq ft'),
-('Deluxe Suite', 'King Size', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Balcony', 'Premium 600 sq ft');
+INSERT INTO room (type, bedding, room_number, place, area, size, status) VALUES
+('Ocean View Single', 'Single', '101', 'Ocean Front', 'Free WiFi, AC, Balcony', 'Compact 200 sq ft', 'Available'),
+('Ocean View Double', 'Double', '102', 'Ocean Front', 'Free WiFi, AC, Balcony, Mini Bar', 'Standard 300 sq ft', 'Available'),
+('Beach Suite', 'King Size', '201', 'Ocean Front', 'Free WiFi, AC, Living Area, Balcony', 'Luxury 500 sq ft', 'Available'),
+('Family Room', 'Twin + Sofa Bed', '202', 'Garden View', 'Free WiFi, AC, Kitchenette', 'Large 400 sq ft', 'Available'),
+('Deluxe Suite', 'King Size', '301', 'Ocean Front', 'Free WiFi, AC, Jacuzzi, Balcony', 'Premium 600 sq ft', 'Available'),
+('Deluxe Room', 'Double', '302', 'Ocean Front', 'Free WiFi, AC, Mini Bar, Balcony', 'Deluxe 350 sq ft', 'Available'),
+('Luxury Room', 'King Size', '303', 'Garden View', 'Free WiFi, AC, Premium Amenities', 'Spacious 380 sq ft', 'Available'),
+('Guest House', 'Twin', '104', 'Garden View', 'Free WiFi, Fan, Shared Kitchen', 'Budget 250 sq ft', 'Available'),
+('Single Room', 'Single', '105', 'City View', 'Free WiFi, AC, Work Desk', 'Cozy 180 sq ft', 'Available'),
+('Superior Room', 'Queen Size', '401', 'Ocean Front', 'Free WiFi, AC, Premium Toiletries', 'Superior 320 sq ft', 'Available');
 
 -- Insert sample food items for Ocean View Hotel
 INSERT INTO foods (name, category, price) VALUES
@@ -213,14 +231,15 @@ CREATE INDEX idx_food_payments_status ON food_payments(payment_status);
 -- ==============================
 
 ALTER TABLE contact MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE login MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE login MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 ALTER TABLE payment MODIFY id int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE room MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-ALTER TABLE roombook MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE room MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE roombook MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT;
 ALTER TABLE foods MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 ALTER TABLE food_orders MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE food_payments MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE food_payment_items MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE newsletterlog MODIFY id int(10) unsigned NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

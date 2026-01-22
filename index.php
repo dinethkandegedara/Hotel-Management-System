@@ -56,7 +56,7 @@ include('db.php');
 						<ul class="nav navbar-nav menu__list">
 							<li class="menu__item menu__item--current"><a href="" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
-							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
+							<li class="menu__item"><a href="rooms.php" class="menu__link">Rooms</a></li>
 							<li class="menu__item"><a href="food_order.php" class="menu__link">Food Order</a></li>
 						</ul>
 					</nav>
@@ -166,6 +166,7 @@ include('db.php');
     </div>
 </div>
  	<!-- //about -->
+ 	
 <!--sevices-->
 <div class="advantages">
 	<div class="container">
@@ -197,109 +198,6 @@ include('db.php');
 	</div>
 </div>
 <!--//sevices-->
-	 <!-- rooms & rates -->
-      <div class="plans-section" id="rooms">
-				 <div class="container">
-				 <h3 class="title-w3-agileits title-black-wthree">Rooms And Rates</h3>
-						<div class="priceing-table-main">
-				 <div class="col-md-3 price-grid">
-					<div class="price-block agile">
-						<div class="price-gd-top">
-						<img src="images/r1.jpg" alt=" " class="img-responsive" />
-							<h4>Deluxe Room</h4>
-						</div>
-						<div class="price-gd-bottom">
-							   <div class="price-list">
-									<ul>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star" aria-hidden="true"></i></li>
-											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									
-								     </ul>
-							</div>
-							<div class="price-selet">	
-								<h3><span>LKR</span> 45,000</h3>						
-								<a href="admin/reservation.php" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 price-grid ">
-					<div class="price-block agile">
-						<div class="price-gd-top">
-						<img src="images/r2.jpg" alt=" " class="img-responsive" />
-							<h4>Luxury Room</h4>
-						</div>
-						<div class="price-gd-bottom">
-							<div class="price-list">
-									<ul>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								</ul>
-							</div>
-							<div class="price-selet">
-								<h3><span>LKR</span> 32,000</h3>
-								<a href="admin/reservation.php" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 price-grid lost">
-					<div class="price-block agile">
-						<div class="price-gd-top">
-						<img src="images/r3.jpg" alt=" " class="img-responsive" />
-							<h4>Guest House</h4>
-						</div>
-						<div class="price-gd-bottom">
-							<div class="price-list">
-								<ul>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								</ul>
-							</div>
-							<div class="price-selet">
-								<h3><span>LKR</span> 26,000</h3>
-								<a href="admin/reservation.php" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 price-grid wthree lost">
-					<div class="price-block agile">
-						<div class="price-gd-top ">
-							<img src="images/r4.jpg" alt=" " class="img-responsive" />
-							<h4>Single Room</h4>
-						</div>
-						<div class="price-gd-bottom">
-							<div class="price-list">
-								<ul>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-									<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-								</ul>
-							</div>
-							<div class="price-selet">
-								<h3><span>LKR</span> 22,000</h3>
-								<a href="admin/reservation.php" >Book Now</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-	</div>
-	 <!--// rooms & rates -->
 			<div class="copy">
 		        <p>© 2025 OCEAN VIEW HOTEL . All Rights Reserved | Design by <a href="index.php">OCEAN VIEW HOTEL</a> </p>
 		    </div>
