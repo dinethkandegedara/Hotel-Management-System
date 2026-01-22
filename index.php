@@ -29,29 +29,11 @@ include('db.php');
 <body>
 <!-- header -->
 <div class="banner-top">
-			<div class="social-bnr-agileits">
-				<ul class="social-icons3">
-								<li><a href="https://www.facebook.com/" class="fa fa-facebook icon-border facebook"> </a></li>
-								<li><a href="https://twitter.com/" class="fa fa-twitter icon-border twitter"> </a></li>
-								<li><a href="https://plus.google.com/u/0/" class="fa fa-google-plus icon-border googleplus"> </a></li> 
-							</ul>
-			</div>
 			<div class="contact-bnr-w3-agile">
 				<ul>
 					<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@oceanviewhotel.com">INFO@OCEANVIEWHOTEL.COM</a></li>
 					<li><i class="fa fa-phone" aria-hidden="true"></i>+94 (32)225-8800</li>	
-					<li class="s-bar">
-						<div class="search">
-							<input class="search_box" type="checkbox" id="search_box">
-							<label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-							<div class="search_form">
-								<form action="#" method="post">
-									<input type="search" name="Search" placeholder=" " required=" " />
-									<input type="submit" value="Search">
-								</form>
-							</div>
-						</div>
-					</li>
+					<li style="margin-left: 20px;"><a href="admin/index.php" class="btn btn-primary btn-sm" style="background-color: #ff6b6b; border: none; padding: 8px 20px; border-radius: 4px;">Admin Login</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -74,10 +56,8 @@ include('db.php');
 						<ul class="nav navbar-nav menu__list">
 							<li class="menu__item menu__item--current"><a href="" class="menu__link">Home</a></li>
 							<li class="menu__item"><a href="#about" class="menu__link scroll">About</a></li>
-							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
 							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Rooms</a></li>
 							<li class="menu__item"><a href="food_order.php" class="menu__link">Food Order</a></li>
-							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact Us</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -140,11 +120,6 @@ include('db.php');
 			<div class="clearfix"> </div>
 			<!--banner Slider starts Here-->
 		</div>
-		    <div class="thim-click-to-bottom">
-				<a href="#about" class="scroll">
-					<i class="fa fa-long-arrow-down" aria-hidden="true"></i>
-				</a>
-			</div>
 	</div>	
 	<!-- //banner --> 
 <!--//Header-->
@@ -172,47 +147,6 @@ include('db.php');
 
 			<div class="clearfix"> </div>
 </div>
-<!-- banner-bottom -->
-	<div class="banner-bottom">
-		<div class="container">	
-			<div class="agileits_banner_bottom">
-				<h3><span>Experience a good stay, enjoy fantastic offers</span> Find our friendly welcoming reception</h3>
-			</div>
-			<div class="w3ls_banner_bottom_grids">
-				<ul class="cbp-ig-grid">
-					<li>
-						<div class="w3_grid_effect">
-							<span class="cbp-ig-icon w3_road"></span>
-							<h4 class="cbp-ig-title">MASTER BEDROOMS</h4>
-							<span class="cbp-ig-category">OCEAN VIEW</span>
-						</div>
-					</li>
-					<li>
-						<div class="w3_grid_effect">
-							<span class="cbp-ig-icon w3_cube"></span>
-							<h4 class="cbp-ig-title">SEA VIEW BALCONY</h4>
-							<span class="cbp-ig-category">OCEAN VIEW</span>
-						</div>
-					</li>
-					<li>
-						<div class="w3_grid_effect">
-							<span class="cbp-ig-icon w3_users"></span>
-							<h4 class="cbp-ig-title">LARGE CAFE</h4>
-							<span class="cbp-ig-category">OCEAN VIEW</span>
-						</div>
-					</li>
-					<li>
-						<div class="w3_grid_effect">
-							<span class="cbp-ig-icon w3_ticket"></span>
-							<h4 class="cbp-ig-title">WIFI COVERAGE</h4>
-							<span class="cbp-ig-category">OCEAN VIEW</span>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-<!-- //banner-bottom -->
 <!-- /about -->
  	<div class="about-wthree" id="about">
 		  <div class="container">
@@ -238,7 +172,7 @@ include('db.php');
 		<div class="advantages-main">
 				<h3 class="title-w3-agileits">Our Services</h3>
 		   <div class="advantage-bottom">
-			 <div class="col-md-6 advantage-grid left-w3ls wow bounceInLeft" data-wow-delay="0.3s">
+			 <div class="col-md-6 advantage-grid left-w3ls">
 			 	<div class="advantage-block ">
 					<i class="fa fa-credit-card" aria-hidden="true"></i>
 			 		<h4>Oceanfront Luxury Rooms</h4>
@@ -248,7 +182,7 @@ include('db.php');
 			 		
 			 	</div>
 			 </div>
-			 <div class="col-md-6 advantage-grid right-w3ls wow zoomIn" data-wow-delay="0.3s">
+			 <div class="col-md-6 advantage-grid right-w3ls">
 			 	<div class="advantage-block">
 					<i class="fa fa-clock-o" aria-hidden="true"></i>
 			 		<h4>Event & Function Hosting</h4>
@@ -263,108 +197,6 @@ include('db.php');
 	</div>
 </div>
 <!--//sevices-->
-<!-- Gallery -->
-<section class="portfolio-w3ls" id="gallery">
-		 <h3 class="title-w3-agileits title-black-wthree">Our Gallery</h3>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g1.jpg" class="swipebox"><img src="images/g1.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g2.jpg" class="swipebox"><img src="images/g2.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g3.jpg" class="swipebox"><img src="images/g3.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g4.jpg" class="swipebox"><img src="images/g4.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g5.jpg" class="swipebox"><img src="images/g5.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g6.jpg" class="swipebox"><img src="images/g6.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-					   </div>
-				   </a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g6.jpg" class="swipebox"><img src="images/g7.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-					   </div>
-				   </a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g6.jpg" class="swipebox"><img src="images/g8.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-					   </div>
-				   </a>
-				</div>
-					<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g9.jpg" class="swipebox"><img src="images/g9.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g10.jpg" class="swipebox"><img src="images/g10.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g4.jpg" class="swipebox"><img src="images/g4.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="col-md-3 gallery-grid gallery1">
-					<a href="images/g2.jpg" class="swipebox"><img src="images/g2.jpg" class="img-responsive" alt="/">
-						<div class="textbox">
-						<h4>OCEAN VIEW</h4>
-							<p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
-						</div>
-				</a>
-				</div>
-				<div class="clearfix"> </div>
-</section>
-<!-- //gallery -->
 	 <!-- rooms & rates -->
       <div class="plans-section" id="rooms">
 				 <div class="container">
@@ -468,178 +300,6 @@ include('db.php');
 		</div>
 	</div>
 	 <!--// rooms & rates -->
-  <!-- visitors -->
-	<div class="w3l-visitors-agile" >
-		<div class="container">
-                 <h3 class="title-w3-agileits title-black-wthree">What other visitors experienced</h3> 
-		</div>
-		<div class="w3layouts_work_grids">
-			<section class="slider">
-				<div class="flexslider">
-					<ul class="slides">
-						<li>
-							<div class="w3layouts_work_grid_left">
-								<img src="images/5.jpg" alt=" " class="img-responsive" />
-								<div class="w3layouts_work_grid_left_pos">
-									<img src="images/c1.jpg" alt=" " class="img-responsive" />
-								</div>
-							</div>
-							<div class="w3layouts_work_grid_right">
-								<div class="rating-stars">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								</div>
-								<h4>Breathtaking ocean views and perfect hospitality!</h4>
-								<p>The panoramic sea view from our room was absolutely stunning! We woke up to dolphins playing in the distance. The staff was incredibly welcoming and the location is perfect for exploring Kalpitiya's beaches. Definitely the best hotel experience in Sri Lanka!</p>
-								<h5>Julia Rose</h5>
-								<p>Germany</p>
-							</div>
-							<div class="clearfix"> </div>
-						</li>
-						<li>
-							<div class="w3layouts_work_grid_left">
-								<img src="images/5.jpg" alt=" " class="img-responsive" />
-								<div class="w3layouts_work_grid_left_pos">
-									<img src="images/c2.jpg" alt=" " class="img-responsive" />
-								</div>
-							</div>
-							<div class="w3layouts_work_grid_right">
-								<div class="rating-stars">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								</div>
-								<h4>Amazing beach location with excellent service</h4>
-								<p>Ocean View Hotel exceeded our expectations! The beachside location is unbeatable - just a short walk to pristine beaches. We enjoyed kite surfing and the famous Kalpitiya bar scene. The room was comfortable and the sea breeze from our balcony was refreshing. Great value for money!</p>
-								<h5>Jonathan Smith</h5>
-								<p>United States</p>
-							</div>
-							<div class="clearfix"> </div>
-						</li>
-						<li>
-							<div class="w3layouts_work_grid_left">
-								<img src="images/5.jpg" alt=" " class="img-responsive" />
-								<div class="w3layouts_work_grid_left_pos">
-									<img src="images/c3.jpg" alt=" " class="img-responsive" />
-								</div>
-							</div>
-							<div class="w3layouts_work_grid_right">
-								<div class="rating-stars">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								</div>
-								<h4>PERFECT FOR OUR HONEYMOON CELEBRATION</h4>
-								<p>We chose Ocean View Hotel for our honeymoon and it was magical! The sunset views from our room were romantic, the staff organized a beautiful beach dinner for us, and we loved exploring the nearby Wilpattu National Park. The 30 years of hospitality experience really shows in their attention to detail.</p>
-								<h5>Rosalind Cloer</h5>
-								<p>Italy</p>
-							</div>
-							<div class="clearfix"> </div>
-						</li>
-						<li>
-							<div class="w3layouts_work_grid_left">
-								<img src="images/5.jpg" alt=" " class="img-responsive" />
-								<div class="w3layouts_work_grid_left_pos">
-									<img src="images/c4.jpg" alt=" " class="img-responsive" />
-								</div>
-							</div>
-							<div class="w3layouts_work_grid_right">
-								<div class="rating-stars">
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								<i class="fa fa-star-o" aria-hidden="true"></i>
-								</div>
-								<h4>Great family-friendly hotel with authentic Sri Lankan charm</h4>
-								<p>Our family had a wonderful stay at Ocean View Hotel! The kids loved the beach access and we appreciated the clean, comfortable rooms. The local staff shared great tips about Kalpitiya's attractions. Only minor suggestion would be faster WiFi, but the natural beauty more than made up for it. We'll definitely return!</p>
-								<h5>Amie Bublitz</h5>
-								<p>Switzerland</p>
-							</div>
-							<div class="clearfix"> </div>
-						</li>
-					</ul>
-				</div>
-			</section>
-		</div>	
-	</div>
-  <!-- visitors -->
-<!-- contact -->
-<section class="contact-w3ls" id="contact">
-	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile2" data-aos="flip-left">
-			<div class="contact-agileits">
-				<h4>Contact Us</h4>
-				<p class="contact-agile2">Sign Up For Our News Letters</p>
-				<form  method="post" name="sentMessage" id="contactForm" >
-					<div class="control-group form-group">
-                        
-                            <label class="contact-p1">Full Name:</label>
-                            <input type="text" class="form-control" name="name" id="name" required >
-                            <p class="help-block"></p>
-                       
-                    </div>	
-                    <div class="control-group form-group">
-                        
-                            <label class="contact-p1">Phone Number:</label>
-                            <input type="tel" class="form-control" name="phone" id="phone" required >
-							<p class="help-block"></p>
-						
-                    </div>
-                    <div class="control-group form-group">
-                        
-                            <label class="contact-p1">Email Address:</label>
-                            <input type="email" class="form-control" name="email" id="email" required >
-							<p class="help-block"></p>
-						
-                    </div>
-                    
-                    
-                    <input type="submit" name="sub" value="Send Now" class="btn btn-primary">	
-				</form>
-				<?php
-				if(isset($_POST['sub']))
-				{
-					$name =$_POST['name'];
-					$phone = $_POST['phone'];
-					$email = $_POST['email'];
-					$approval = "Not Allowed";
-					$sql = "INSERT INTO `contact`(`fullname`, `phoneno`, `email`,`cdate`,`approval`) VALUES ('$name','$phone','$email',now(),'$approval')" ;
-					
-					
-					if(mysqli_query($con,$sql))
-					echo"OK";
-					
-				}
-				?>
-			</div>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile1" data-aos="flip-right">
-			<h4>Connect With Us</h4>
-			<p class="contact-agile1"><strong>Phone :</strong>+94 (32)225-8800</p>
-			<p class="contact-agile1"><strong>Email :</strong> <a href="mailto:info@oceanviewhotel.com">INFO@OCEANVIEWHOTEL.COM</a></p>
-			<p class="contact-agile1"><strong>Address :</strong> Kalpitiya Beach Side, 1km from Kalpitiya Town, Sri Lanka</p>
-																
-			<div class="social-bnr-agileits footer-icons-agileinfo">
-				<ul class="social-icons3">
-								<li><a href="#" class="fa fa-facebook icon-border facebook"> </a></li>
-								<li><a href="#" class="fa fa-twitter icon-border twitter"> </a></li>
-								<li><a href="#" class="fa fa-google-plus icon-border googleplus"> </a></li> 
-								
-							</ul>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</section>
-<!-- /contact -->
 			<div class="copy">
 		        <p>© 2025 OCEAN VIEW HOTEL . All Rights Reserved | Design by <a href="index.php">OCEAN VIEW HOTEL</a> </p>
 		    </div>
@@ -741,25 +401,6 @@ fit: true
 });
 </script>
 <!--//tabs-->
-<!-- smooth scrolling -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-		/*
-			var defaults = {
-			containerID: 'toTop', // fading element id
-			containerHoverID: 'toTopHover', // fading element hover id
-			scrollSpeed: 1200,
-			easingType: 'linear' 
-			};
-		*/								
-		$().UItoTop({ easingType: 'easeOutQuart' });
-		});
-	</script>
-	
-	<div class="arr-w3ls">
-	<a href="#home" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-	</div>
-<!-- //smooth scrolling -->
 <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 </body>
 </html>
