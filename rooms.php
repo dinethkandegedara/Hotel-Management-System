@@ -1,5 +1,11 @@
 <?php
+session_start();
 include('db.php');
+
+// Initialize cart if not exists
+if (!isset($_SESSION['room_cart'])) {
+    $_SESSION['room_cart'] = array();
+}
 
 // Get filter parameters
 $room_type = isset($_GET['type']) ? trim($_GET['type']) : '';
@@ -392,6 +398,213 @@ $room_ratings = array(
         font-size: 32px;
     }
 }
+
+/* Cart Widget Styles */
+.cart-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.cart-icon-btn {
+    background: #ffce14;
+    color: #2c3e50;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.cart-icon-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #dc3545;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+}
+
+.cart-panel {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+    transition: right 0.3s;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-panel.active {
+    right: 0;
+}
+
+.cart-header {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.cart-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cart-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.cart-item-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.cart-item-details {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.cart-item-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cart-footer {
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.cart-empty i {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.btn-proceed {
+    width: 100%;
+    background: #ffce14;
+    color: #2c3e50;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-proceed:hover {
+    background: #f0c000;
+}
+
+.btn-clear-cart {
+    width: 100%;
+    background: #dc3545;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.btn-clear-cart:hover {
+    background: #c82333;
+}
+
+.btn-add-to-cart {
+    background: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-add-to-cart:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.room-footer-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+@media (max-width: 480px) {
+    .cart-panel {
+        width: 100%;
+        right: -100%;
+    }
+}
 </style>
 </head>
 <body>
@@ -588,7 +801,12 @@ $room_ratings = array(
                             <span>LKR</span> <?php echo number_format($price); ?>
                             <span>/night</span>
                         </div>
-                        <a href="admin/reservation.php" class="btn-book">Book Now</a>
+                        <div class="room-footer-actions">
+                            <button class="btn-add-to-cart" onclick="addToCart(<?php echo $row['id']; ?>, '<?php echo addslashes($room_name); ?>', <?php echo $price; ?>, '<?php echo addslashes($row['bedding']); ?>', '<?php echo $room_num; ?>')">
+                                <i class="fa fa-cart-plus"></i> Add
+                            </button>
+                            <a href="admin/reservation.php" class="btn-book">Book Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -625,10 +843,264 @@ $room_ratings = array(
     </div>
 </div>
 
+<!-- Cart Widget -->
+<div class="cart-widget">
+    <button class="cart-icon-btn" onclick="toggleCart()">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+</div>
+
+<!-- Cart Panel -->
+<div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+        <h3><i class="fa fa-shopping-cart"></i> Selected Rooms</h3>
+        <button class="cart-close" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+        <div class="cart-empty">
+            <i class="fa fa-bed"></i>
+            <p>No rooms selected yet</p>
+            <p style="font-size: 14px;">Browse and add rooms to your cart</p>
+        </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+        <button class="btn-proceed" onclick="proceedToBooking()">
+            <i class="fa fa-check"></i> Proceed to Booking
+        </button>
+        <button class="btn-clear-cart" onclick="clearCart()">
+            <i class="fa fa-trash"></i> Clear All
+        </button>
+    </div>
+</div>
+
 <!-- Footer -->
 <div class="copy">
     <p>© 2025 OCEAN VIEW HOTEL . All Rights Reserved | Design by <a href="index.php">OCEAN VIEW HOTEL</a> </p>
 </div>
+
+<script>
+// Cart functionality
+let roomCart = <?php echo json_encode($_SESSION['room_cart']); ?>;
+
+// Room prices mapping
+const roomPrices = <?php echo json_encode($room_prices); ?>;
+
+function updateCartUI() {
+    const cartBadge = document.getElementById('cartBadge');
+    const cartBody = document.getElementById('cartBody');
+    const cartFooter = document.getElementById('cartFooter');
+    
+    cartBadge.textContent = roomCart.length;
+    
+    if (roomCart.length === 0) {
+        cartBody.innerHTML = `
+            <div class="cart-empty">
+                <i class="fa fa-bed"></i>
+                <p>No rooms selected yet</p>
+                <p style="font-size: 14px;">Browse and add rooms to your cart</p>
+            </div>
+        `;
+        cartFooter.style.display = 'none';
+    } else {
+        let cartHTML = '';
+        let totalPrice = 0;
+        
+        roomCart.forEach((room, index) => {
+            const roomName = room.type || 'Unknown Room';
+            const price = roomPrices[roomName] || 30000;
+            totalPrice += price;
+            
+            cartHTML += `
+                <div class="cart-item">
+                    <button class="cart-item-remove" onclick="removeFromCart(${index})" title="Remove">×</button>
+                    <div class="cart-item-title">${roomName}</div>
+                    <div class="cart-item-details"><i class="fa fa-bed"></i> ${room.bedding || 'N/A'}</div>
+                    <div class="cart-item-details"><i class="fa fa-door-open"></i> Room #${room.room_number || 'N/A'}</div>
+                    <div class="cart-item-details" style="color: #28a745; font-weight: 600;">
+                        <i class="fa fa-money"></i> LKR ${price.toLocaleString()}/night
+                    </div>
+                </div>
+            `;
+        });
+        
+        cartHTML += `
+            <div style="border-top: 2px solid #ddd; padding-top: 15px; margin-top: 15px;">
+                <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 18px;">
+                    <span>Total Per Night:</span>
+                    <span style="color: #28a745;">LKR ${totalPrice.toLocaleString()}</span>
+                </div>
+                <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                    <i class="fa fa-info-circle"></i> Final price will be calculated based on your stay duration
+                </p>
+            </div>
+        `;
+        
+        cartBody.innerHTML = cartHTML;
+        cartFooter.style.display = 'block';
+    }
+}
+
+function toggleCart() {
+    const cartPanel = document.getElementById('cartPanel');
+    cartPanel.classList.toggle('active');
+}
+
+function addToCart(roomId, roomName, price, bedding, roomNumber) {
+    // Check if room already in cart
+    const alreadyInCart = roomCart.some(room => room.id == roomId);
+    
+    if (alreadyInCart) {
+        alert('This room is already in your cart!');
+        return;
+    }
+    
+    // Add room to cart
+    roomCart.push({
+        id: roomId,
+        type: roomName,
+        bedding: bedding,
+        room_number: roomNumber,
+        price: price
+    });
+    
+    // Update session via AJAX
+    fetch('multi_room_booking.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'add_to_cart=1&room_id=' + roomId
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            updateCartUI();
+            showNotification('Room added to cart!', 'success');
+        } else {
+            alert(data.message);
+            // Remove from local cart if server-side failed
+            roomCart = roomCart.filter(room => room.id != roomId);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to add room to cart');
+        roomCart = roomCart.filter(room => room.id != roomId);
+    });
+}
+
+function removeFromCart(index) {
+    const room = roomCart[index];
+    
+    // Update session via AJAX
+    fetch('multi_room_booking.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'remove_from_cart=1&room_id=' + room.id
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            roomCart.splice(index, 1);
+            updateCartUI();
+            showNotification('Room removed from cart', 'info');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to remove room from cart');
+    });
+}
+
+function clearCart() {
+    if (!confirm('Are you sure you want to clear all selected rooms?')) {
+        return;
+    }
+    
+    fetch('multi_room_booking.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'clear_cart=1'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            roomCart = [];
+            updateCartUI();
+            showNotification('Cart cleared', 'info');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function proceedToBooking() {
+    if (roomCart.length === 0) {
+        alert('Please add at least one room to your cart');
+        return;
+    }
+    
+    window.location.href = 'multi_reservation.php';
+}
+
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 10000;
+        animation: slideIn 0.3s ease-out;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
+
+// Initialize cart UI on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartUI();
+});
+</script>
+
+<style>
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+</style>
 
 <!-- js -->
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
