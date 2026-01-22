@@ -12,9 +12,10 @@
   <meta charset="UTF-8">
   <title>OCEAN VIEW HOTEL ADMIN</title>
   
-  
-     
-      <link rel="stylesheet" href="css/style.css">
+  <!-- FontAwesome Styles (Local) -->
+  <link href="assets/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom Login Styles -->
+  <link rel="stylesheet" href="css/style.css">
 
   
 </head>
@@ -38,8 +39,8 @@
 
           <fieldset class="clearfix">
 
-            <p><span class="fontawesome-user"></span><input type="text"  name="user" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fontawesome-lock"></span><input type="password" name="pass"  value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            <p><span class="fa fa-user"></span><input type="text"  name="user" value="Username" onBlur="if(this.value == '') this.value = 'Username'" onFocus="if(this.value == 'Username') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fa fa-lock"></span><input type="password" name="pass"  value="Password" onBlur="if(this.value == '') this.value = 'Password'" onFocus="if(this.value == 'Password') this.value = ''" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
             <p><input type="submit" name="sub"  value="Login"></p>
 
           </fieldset>
