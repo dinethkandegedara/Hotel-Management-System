@@ -326,20 +326,12 @@ foreach ($cart_rooms as $room) {
                     } else {
                         $con = mysqli_connect("localhost", "root", "", "hotel");
                         
-                        // Check if user already exists
-                        $email = mysqli_real_escape_string($con, $_POST['email']);
-                        $check = "SELECT * FROM roombook WHERE email = '$email'";
-                        $rs = mysqli_query($con, $check);
-                        $data = mysqli_fetch_array($rs, MYSQLI_NUM);
+                        // Allow multiple bookings per email - customers can book multiple times
+                        // Book all rooms
+                        $success_count = 0;
+                        $room_ids = explode(',', $_POST['room_ids']);
                         
-                        if($data[0] > 1) {
-                            echo "<script type='text/javascript'> alert('User Already Exists'); window.location.href='multi_reservation.php';</script>";
-                        } else {
-                            // Book all rooms
-                            $success_count = 0;
-                            $room_ids = explode(',', $_POST['room_ids']);
-                            
-                            foreach($cart_rooms as $room) {
+                        foreach($cart_rooms as $room) {
                                 $new = "Not Conform";
                                 $title = mysqli_real_escape_string($con, $_POST['title']);
                                 $fname = mysqli_real_escape_string($con, $_POST['fname']);
@@ -380,32 +372,7 @@ foreach ($cart_rooms as $room) {
                                 </script>";
                             }
                         }
-                    }
-                }
-                ?>
-                
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <!-- JS Scripts-->
-    <script src="admin/assets/js/jquery-1.10.2.js"></script>
-    <script src="admin/assets/js/bootstrap.min.js"></script>
-    <script src="admin/assets/js/jquery.metisMenu.js"></script>
-    <script src="admin/assets/js/custom-scripts.js"></script>
-    
-    <script>
-    const totalPerNight = <?php echo $total_per_night; ?>;
-    
-    function calculateTotal() {
-        const checkin = document.getElementById('checkin').value;
-        const checkout = document.getElementById('checkout').value;
-        
-        if(checkin && checkout) {
-            const date1 = new Date(checkin);
-            const date2 = new Date(checkout);
-            const diffTime = Math.abs(date2 - date1);
+
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             
             if(diffDays > 0 && date2 > date1) {

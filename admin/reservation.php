@@ -213,29 +213,19 @@ include('db.php')
 							{
 							
 									$con=mysqli_connect("localhost","root","","hotel");
-									$check="SELECT * FROM roombook WHERE email = '$_POST[email]'";
-									$rs = mysqli_query($con,$check);
-									$data = mysqli_fetch_array($rs, MYSQLI_NUM);
-									if($data[0] > 1) {
-										echo "<script type='text/javascript'> alert('User Already in Exists')</script>";
-										
-									}
-
-									else
-									{
-										$new ="Not Conform";
-										$newUser="INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Country`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[country]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
-										if (mysqli_query($con,$newUser))
-										{
-											echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
-											
-										}
-										else
-										{
-											echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
-											
-										}
-									}
+								
+								// Allow multiple bookings per email - customers can book multiple times
+								$new ="Not Conform";
+								$newUser="INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Country`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[country]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
+								if (mysqli_query($con,$newUser))
+								{
+									echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+									
+								}
+								else
+								{
+									echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+									
 
 							$msg="Your code is correct";
 							}
