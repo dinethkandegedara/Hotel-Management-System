@@ -225,8 +225,7 @@ include('db.php')
 								else
 								{
 									echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
-									
-
+																}
 							$msg="Your code is correct";
 							}
 							}
