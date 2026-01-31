@@ -1589,7 +1589,7 @@ color: #fff !important;
 /*--copy-right--*/
 .copy {
     text-align: center;
-    background: #0f2453;
+    background: red;
 }
 .copy p {
     color: #fff;
