@@ -741,7 +741,7 @@ li.menu__item:nth-child(6) {
 }
 .book-form-left-w3layouts h2 {
     color: #fff;
-    background: #ffce14;
+    background: #0f2453;
     padding: 60px 0;
     text-align: center;
     font-size: 25px;
@@ -1686,6 +1686,7 @@ color: #fff !important;
 		height: 53px;
 	}
 	.book-form-left-w3layouts h2 {
+		background: #0f2453;
 		padding: 61px 0;
 		font-size: 23px;
 		letter-spacing: 3.5px;
@@ -1757,6 +1758,7 @@ color: #fff !important;
 		left: 48.5%;
 	}
 	.book-form-left-w3layouts h2 {
+		background: #0f2453;
 		padding: 54px 0;
 		font-size: 16px;
 	}
@@ -1980,6 +1982,7 @@ color: #fff !important;
 		bottom: 14%;
 	}
 	.book-form-left-w3layouts h2 {
+		background: #0f2453;
 		padding: 20px 0;
 	}
 	.book-form {
@@ -2172,6 +2175,7 @@ color: #fff !important;
 		bottom: 10%;
 	}
 	.book-form-left-w3layouts h2 {
+		background: #0f2453;
 		padding: 15px 0;
 		font-size: 15px;
 	}
@@ -2425,6 +2429,7 @@ color: #fff !important;
 		top: 46.5%;
 	}
 	.book-form-left-w3layouts h2 {
+		background: #0f2453;
 		padding: 12px 0;
 		font-size: 14px;
 	}
@@ -2643,6 +2648,7 @@ color: #fff !important;
 		bottom: 5%;
 	}
 	.book-form-left-w3layouts h2 {
+		background: #0f2453;
 		padding: 10px 0;
 		font-size: 12px;
 	}
