@@ -294,7 +294,9 @@ p {
 
 
 .book-form-left-w3layouts h2 {
-
     background: #0f2453 !important;
+}
 
+.copy {
+    background: #a94442 !important;
 }
